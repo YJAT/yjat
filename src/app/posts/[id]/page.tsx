@@ -2,6 +2,7 @@ import { getPostById, getPosts } from '@/lib/notion';
 import { format } from 'date-fns';
 import { zhTW } from 'date-fns/locale';
 import NotionPage from '@/components/notion/NotionPage';
+import { PageObjectResponse } from '@notionhq/client/build/src/api-endpoints';
 
 export const revalidate = 3600; // 每小時重新生成頁面
 
@@ -30,19 +31,20 @@ export default async function PostPage({ params }: { params: { id: string } }) {
   }
 
   const { page, recordMap } = postData;
+  const notionPage = page as PageObjectResponse;
   
   // 從 Notion 頁面獲取標題
-  const title = page.properties.Title.title
+  const title = notionPage.properties.Title.title
     .map((text: any) => text.plain_text)
     .join('');
   
   // 從 Notion 頁面獲取發布日期
-  const publishedDate = page.properties.Published?.date?.start
-    ? format(new Date(page.properties.Published.date.start), 'yyyy年MM月dd日', { locale: zhTW })
+  const publishedDate = notionPage.properties.Published?.date?.start
+    ? format(new Date(notionPage.properties.Published.date.start), 'yyyy年MM月dd日', { locale: zhTW })
     : '未發布';
   
   // 從 Notion 頁面獲取封面圖片
-  const coverImage = page.cover?.external?.url || page.cover?.file?.url || null;
+  const coverImage = notionPage.cover?.external?.url || notionPage.cover?.file?.url || null;
 
   return (
     <article className="max-w-4xl mx-auto">
