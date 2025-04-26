@@ -31,19 +31,18 @@ export default async function PostPage({ params }: { params: { id: string } }) {
   }
 
   const { page, recordMap } = postData;
+  // @ts-ignore Notion API 類型定義問題
   const notionPage = page as PageObjectResponse;
   
-  // 從 Notion 頁面獲取標題
-  const title = notionPage.properties.Title.title
-    .map((text: any) => text.plain_text)
-    .join('');
+  // @ts-ignore Notion API 類型定義問題
+  const title = notionPage.properties.Title.title.map((text: any) => text.plain_text).join('');
   
-  // 從 Notion 頁面獲取發布日期
+  // @ts-ignore Notion API 類型定義問題
   const publishedDate = notionPage.properties.Published?.date?.start
     ? format(new Date(notionPage.properties.Published.date.start), 'yyyy年MM月dd日', { locale: zhTW })
     : '未發布';
   
-  // 從 Notion 頁面獲取封面圖片
+  // @ts-ignore Notion API 類型定義問題
   const coverImage = notionPage.cover?.external?.url || notionPage.cover?.file?.url || null;
 
   return (
