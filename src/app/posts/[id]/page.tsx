@@ -38,9 +38,7 @@ export default async function PostPage({ params }: { params: { id: string } }) {
   const title = notionPage.properties.Title.title.map((text: any) => text.plain_text).join('');
   
   // @ts-ignore Notion API 類型定義問題
-  const publishedDate = notionPage.properties.Published?.date?.start
-    ? format(new Date(notionPage.properties.Published.date.start), 'yyyy年MM月dd日', { locale: zhTW })
-    : '未發布';
+  const publishedDate = notionPage.properties.Published?.date?.start ? format(new Date(notionPage.properties.Published.date.start), 'yyyy年MM月dd日', { locale: zhTW }) : '未發布';
   
   // @ts-ignore Notion API 類型定義問題
   const coverImage = notionPage.cover?.external?.url || notionPage.cover?.file?.url || null;
