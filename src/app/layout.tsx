@@ -5,7 +5,7 @@ import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: "臺灣青年法律人協會",
-  description: "使用 Next.js 和 Notion API 打造的部落格",
+  description: "扎根法界，深化參與，守護臺灣",
 };
 
 export default function RootLayout({

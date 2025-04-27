@@ -2,7 +2,6 @@ import { getPostById, getPosts } from '@/lib/notion';
 import { format } from 'date-fns';
 import { zhTW } from 'date-fns/locale';
 import NotionPage from '@/components/notion/NotionPage';
-import { PageObjectResponse } from '@notionhq/client/build/src/api-endpoints';
 
 export const revalidate = 3600; // 每小時重新生成頁面
 
@@ -17,53 +16,51 @@ export async function generateStaticParams() {
 
 export default async function PostPage({ params }: { params: { id: string } }) {
   const { id } = params;
-  const postData = await getPostById(id);
+  const postData : any = await getPostById(id);
+  
+  
+  const { page, recordMap } = postData;
+  
+  const notionPage = page as any;
+  
+  const title = notionPage.properties.Title.title.map((text: any) => text.plain_text).join('');
+  
+  const publishedDate = notionPage.properties.Published?.date?.start ? format(new Date(notionPage.properties.Published.date.start), 'yyyy年MM月dd日', { locale: zhTW }) : '--';
+  
+  const coverImage = notionPage.cover?.external?.url || notionPage.cover?.file?.url || null;
+  
+  const author = notionPage.properties.Author?.rich_text[0]?.plain_text || "不具名";
   
   if (!postData) {
     return (
       <div className="py-20 text-center">
-        <h1 className="text-2xl font-bold text-gray-800 mb-4">文章未找到</h1>
-        <p className="text-gray-600">
+        <h1 className="text-2xl font-bold text-gray-800 dark:text-white mb-4">文章未找到</h1>
+        <p className="text-gray-600 dark:text-white">
           抱歉，我們找不到您請求的文章。它可能已被刪除或移動。
         </p>
       </div>
     );
-  }
-
-  const { page, recordMap } = postData;
-  // @ts-ignore Notion API 類型定義問題
-  const notionPage = page as PageObjectResponse;
-  
-  // @ts-ignore Notion API 類型定義問題
-  const title = notionPage.properties.Title.title.map((text: any) => text.plain_text).join('');
-  
-  // @ts-ignore Notion API 類型定義問題
-  const publishedDate = notionPage.properties.Published?.date?.start ? format(new Date(notionPage.properties.Published.date.start), 'yyyy年MM月dd日', { locale: zhTW }) : '未發布';
-  
-  // @ts-ignore Notion API 類型定義問題
-  const coverImage = notionPage.cover?.external?.url || notionPage.cover?.file?.url || null;
-
-  return (
-    <article className="max-w-4xl mx-auto">
-      {/* 文章標題和元信息 */}
-      <div className="mb-8 text-center">
-        <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">{title}</h1>
-        <div className="text-gray-600">發布於 {publishedDate}</div>
-      </div>
-      
-      {/* 封面圖片 */}
-      {coverImage && (
-        <div className="mb-8">
-          <img
-            src={coverImage}
-            alt={title}
-            className="w-full h-auto rounded-lg shadow-md"
-          />
+  }else{
+    return (
+      <article className="max-w-2xl mx-auto">
+        <div className="mb-6">
+          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white px-4 mb-4 border-l-4 border-l-emerald-500">{title}</h1>
+          <div className="text-gray-600 dark:text-gray-200 text-sm">發布於 {publishedDate}</div>
+          <div className='text-gray-600 dark:text-gray-200 text-sm mt-2'>作者：{author}</div>
         </div>
-      )}
-      
-      {/* 使用客戶端 NotionPage 組件來渲染 Notion 內容 */}
-      <NotionPage recordMap={recordMap} />
-    </article>
-  );
+  
+        {coverImage && (
+          <div className="mb-8">
+            <img
+              src={coverImage}
+              alt={title}
+              className="w-full h-auto rounded-lg shadow-md"
+            />
+          </div>
+        )}
+        
+        <NotionPage recordMap={recordMap} />
+      </article>
+    );
+  }
 }

@@ -1,11 +1,13 @@
 import Link from 'next/link';
+import logo from '../../public/images/logo.jpg'
 
 export default function Header() {
   return (
     <header className="bg-white shadow-md">
-      <div className="container mx-auto px-4 py-6">
+      <div className="container mx-auto p-4">
         <div className="flex justify-between items-center">
-          <Link href="/" className="text-2xl font-bold text-gray-800 hover:text-gray-600">
+          <Link href="/" className="flex items-center gap-x-2 text-lg md:text-2xl font-bold text-gray-800 hover:text-gray-600">
+            <img className='w-10' src={logo.src} alt="臺灣青年法律人協會" />
             臺灣青年法律人協會
           </Link>
           <nav>

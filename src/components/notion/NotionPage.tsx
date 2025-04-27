@@ -3,6 +3,7 @@
 import { NotionRenderer } from 'react-notion-x';
 import 'react-notion-x/src/styles.css';
 import dynamic from 'next/dynamic';
+import { useEffect, useState } from 'react';
 
 // 動態導入必要的組件
 const Code = dynamic(() =>
@@ -36,6 +37,24 @@ type NotionPageProps = {
 };
 
 export default function NotionPage({ recordMap }: NotionPageProps) {
+  const [theme, setTheme] = useState(false);
+
+  useEffect(() => {
+
+    const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    setTheme(darkModeMediaQuery.matches);
+
+    const handleThemeChange = (e: MediaQueryListEvent) => {
+      setTheme(e.matches);
+    };
+
+    darkModeMediaQuery.addEventListener('change', handleThemeChange);
+
+    return () => {
+      darkModeMediaQuery.removeEventListener('change', handleThemeChange);
+    };
+  }, []);
+
   if (!recordMap) {
     return <div>載入中...</div>;
   }
@@ -45,7 +64,7 @@ export default function NotionPage({ recordMap }: NotionPageProps) {
       <NotionRenderer
         recordMap={recordMap}
         fullPage={false}
-        darkMode={false}
+        darkMode={theme}
         components={{
           Code,
           Collection,

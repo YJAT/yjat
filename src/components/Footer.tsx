@@ -6,9 +6,6 @@ export default function Footer() {
           <p className="text-gray-600 text-sm">
             © {new Date().getFullYear()} 臺灣青年法律人協會 保留所有權利。
           </p>
-          <p className="text-gray-500 text-xs mt-2">
-            使用 Next.js 與 Notion API 建構
-          </p>
         </div>
       </div>
     </footer>

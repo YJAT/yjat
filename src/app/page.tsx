@@ -1,5 +1,6 @@
 import { getPosts } from '@/lib/notion';
 import PostCard from '@/components/PostCard';
+import logo from '../../public/images/logo.jpg'
 
 export const revalidate = 3600; // 每小時重新生成頁面
 
@@ -8,15 +9,15 @@ export default async function Home() {
   
   return (
     <div className="space-y-8">
-      <section className="text-center mb-12">
-        <h1 className="text-4xl font-bold text-gray-800 mb-4">臺灣青年法律人協會</h1>
-        <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-          這裡是我的個人空間，分享我的想法、經驗和創作。
+      <section className="mb-12">
+        <h1 className="text-5xl md:text-8xl font-bold text-gray-800 dark:text-white mb-4">臺灣青年<br/>法律人協會</h1>
+        <p className="text-xl text-gray-600 dark:text-gray-100 max-w-2xl">
+          扎根法界，深化參與，守護臺灣
         </p>
       </section>
       
       <section>
-        <h2 className="text-2xl font-semibold text-gray-800 mb-6">最新文章</h2>
+        <h2 className="text-2xl font-semibold text-gray-800 dark:text-gray-100 mb-6">最新文章</h2>
         
         {posts.length === 0 ? (
           <div className="text-center py-12 bg-gray-50 rounded-lg">
