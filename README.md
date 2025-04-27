@@ -1,6 +1,6 @@
-# YJAT 部落格 - Notion 驅動的部落格網站
+# 臺灣青年法律人協會網站
 
-這是一個使用 Next.js 和 Notion API 構建的簡單部落格網站。它允許您使用 Notion 作為 CMS，輕鬆管理和發佈內容。
+青法協網站初稿，使用 Ｎotion 作為文章管理後台，建構中。
 
 ## 功能
 
@@ -14,7 +14,7 @@
 ## 技術棧
 
 - **框架**: Next.js 14.2
-- **樣式**: Tailwind CSS 3
+- **樣式**: Tailwind CSS 4
 - **CMS**: Notion API
 - **語言**: TypeScript
 
@@ -140,19 +140,9 @@ npm run dev
 - 確認您已經將集成添加到數據庫中
 - 檢查數據庫屬性是否按照要求設置
 
-### React 19 相容性問題
-
-如果您遇到與 React 19 相關的錯誤：
-- 確認您沒有使用不相容的第三方庫
-- 考慮降級到 React 18（需要修改 package.json）
-- 或等待第三方庫更新以支持 React 19
-
 ## 參考資源
 
 - [Next.js 文檔](https://nextjs.org/docs)
 - [Notion API 文檔](https://developers.notion.com/)
 - [Tailwind CSS 文檔](https://tailwindcss.com/docs)
 
-## 授權
-
-MIT
