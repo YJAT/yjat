@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import logo from '../../public/images/logo.jpg'
+import Image from 'next/image'
 
 export default function Header() {
   return (
@@ -7,7 +7,7 @@ export default function Header() {
       <div className="container mx-auto p-4">
         <div className="flex justify-between items-center">
           <Link href="/" className="flex items-center gap-x-2 text-lg md:text-2xl font-bold text-gray-800 hover:text-gray-600">
-            <img className='w-10' src={logo.src} alt="臺灣青年法律人協會" />
+            <Image src="/images/logo.jpg" alt="臺灣青年法律人協會" width={40} height={40} />
             臺灣青年法律人協會
           </Link>
           <nav>

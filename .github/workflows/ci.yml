@@ -1,0 +1,29 @@
+name: Lint
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  typescript-check:
+    name: TypeScript check
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Scan code
+        uses: actions/checkout@v3
+      
+      - name: Node.js settings
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: TypeScript compiler
+        run: npx tsc --noEmit
+      
+      - name: ESLint 
+        run: npm run lint
