@@ -1,6 +1,5 @@
 import { getPosts } from '@/lib/notion';
 import PostCard from '@/components/PostCard';
-import logo from '../../public/images/logo.jpg'
 
 export const revalidate = 3600; // 每小時重新生成頁面
 
