@@ -23,6 +23,8 @@ export default function PostCard({ post }: PostCardProps) {
   // 從 Notion 頁面獲取封面圖片
   const coverImage = post.cover?.external?.url || post.cover?.file?.url || '/images/default-cover.png';
 
+  const author = post.properties.Author?.rich_text[0]?.plain_text || "不具名";
+
   return (
     <div className="bg-white dark:bg-[#211f29] rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
       <div className="h-48 overflow-hidden">
@@ -33,7 +35,10 @@ export default function PostCard({ post }: PostCardProps) {
         />
       </div>
       <div className="p-6">
-        <p className="text-sm text-gray-500 dark:text-white mb-2">{publishedDate}</p>
+        <div className='flex items-center justify-between'>
+          <p className="text-sm text-gray-500 dark:text-white mb-2">{author}</p>
+          <p className="text-sm text-gray-500 dark:text-white mb-2">{publishedDate}</p>
+        </div>
         <h2 className="text-xl font-semibold mb-2 text-gray-800 dark:text-white">
           <Link href={`/posts/${post.id}`} className="hover:underline">
             {title}
