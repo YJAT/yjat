@@ -8,11 +8,7 @@ export const metadata: Metadata = {
   description: "扎根法界，深化參與，守護臺灣",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({children}: Readonly<{children: React.ReactNode}>) {
   return (
     <html lang="zh-TW">
       <body>
