@@ -34,7 +34,8 @@ export default function PostCard({ post }: PostCardProps) {
           height={500}
           src={coverImage} 
           alt={title}
-          className="w-full h-full object-cover" 
+          className="w-full h-full object-cover"
+          priority
         />
       </div>
       <div className="p-6">
