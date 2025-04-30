@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { format } from 'date-fns';
 import { zhTW } from 'date-fns/locale';
+import Image from 'next/image';
 
 type PostCardProps = {
   post: any; // 從 Notion API 獲取的文章數據
@@ -28,7 +29,9 @@ export default function PostCard({ post }: PostCardProps) {
   return (
     <div className="bg-white dark:bg-[#211f29] rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
       <div className="h-48 overflow-hidden">
-        <img 
+        <Image
+          width={500}
+          height={500}
           src={coverImage} 
           alt={title}
           className="w-full h-full object-cover" 

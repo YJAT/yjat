@@ -2,6 +2,7 @@ import { getPostById, getPosts } from '@/lib/notion';
 import { format } from 'date-fns';
 import { zhTW } from 'date-fns/locale';
 import NotionPage from '@/components/notion/NotionPage';
+import Image from 'next/image';
 
 export const revalidate = 3600; // 每小時重新生成頁面
 
@@ -51,7 +52,9 @@ export default async function PostPage({ params }: { params: { id: string } }) {
   
         {coverImage && (
           <div className="mb-8">
-            <img
+            <Image
+              width={1000}
+              height={1000}
               src={coverImage}
               alt={title}
               className="w-full h-auto rounded-lg shadow-md"
