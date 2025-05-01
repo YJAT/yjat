@@ -1,6 +1,5 @@
 import { getPosts } from '@/lib/notion'
 import PostCard from '@/components/PostCard'
-import { useRef, useEffect } from 'react'
 
 export default async function Post(){
   const posts = await getPosts()
