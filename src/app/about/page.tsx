@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
-import about1 from '../../../public/images/about1.jpg'
 
 export const metadata: Metadata = {
   title: '關於',
@@ -13,7 +12,9 @@ export default function AboutPage() {
       <h1 className="text-3xl font-bold mb-8">關於台灣青年法律人協會</h1>
       
       <div className="grid grid-cols-2 gap-x-4">
-        <Image src={about1} alt='about1'/>
+        <div>
+          <Image src='/images/about1.jpg' alt='about1' className='w-full h-full object-cover' width={500} height={500}/>
+        </div>
         <div>
           <h2 className='text-3xl font-bold mb-8'>理事長的話</h2>
           <p>
