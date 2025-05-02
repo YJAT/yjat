@@ -1,56 +1,42 @@
 import Link from 'next/link';
 import Image from 'next/image'
+import { Navbar, NavbarBrand, NavbarCollapse, NavbarLink, NavbarToggle, ThemeConfig } from "flowbite-react";
 
-export default function Header() {
+
+export default function Component() {
   return (
-    <header className="bg-white shadow-md">
-      <div className="container mx-auto p-4">
-        <div className="flex justify-between items-center">
-          <Link href="/" className="flex items-center gap-x-2 text-lg md:text-2xl font-bold text-gray-800 hover:text-gray-600">
-            <Image src="/images/logo.jpg" alt="臺灣青年法律人協會" width={40} height={40} />
-            臺灣青年法律人協會
-          </Link>
-          <nav>
-            <ul className="flex space-x-6">
-              <li>
-                <Link href="/news" className="text-gray-600 hover:text-gray-900">
-                  最新消息
-                </Link>
-              </li>
-              <li>
-                <Link href="/lawyers-chat" className="text-gray-600 hover:text-gray-900">
-                  律師雜談
-                </Link>
-              </li>
-              <li>
-                <Link href="/graduate-student-life" className="text-gray-600 hover:text-gray-900">
-                  研究生日常
-                </Link>
-              </li>
-              <li>
-                <Link href="/weekly-review" className="text-gray-600 hover:text-gray-900">
-                  每週評論
-                </Link>
-              </li>
-              <li>
-                <Link href="/current-affairs-commentary" className="text-gray-600 hover:text-gray-900">
-                  時事評論
-                </Link>
-              </li>
-              <li>
-                <Link href="/collaborative-column" className="text-gray-600 hover:text-gray-900">
-                  合作專欄
-                </Link>
-              </li>
-              <li>
-                <Link href="/about" className="text-gray-600 hover:text-gray-900">
-                  關於
-                </Link>
-              </li>
-            </ul>
-          </nav>
-        </div>
-      </div>
-    </header>
+    <>
+    <ThemeConfig dark={false}/>
+      <Navbar className='bg-white shadow-md'>
+        <NavbarBrand className='text-black' as={Link} href="/">
+          <Image src="/images/logo.jpg" alt="臺灣青年法律人協會" width={40} height={40} />
+          臺灣青年法律人協會
+        </NavbarBrand>
+        <NavbarToggle />
+        <NavbarCollapse>
+          <NavbarLink href="/news" className="text-gray-600 md:hover:text-gray-900 md:hover:underline -mr-2">
+            最新消息
+          </NavbarLink>
+          <NavbarLink href="/lawyers-chat" className="text-gray-600 md:hover:text-gray-900 md:hover:underline -mr-2">
+            律師雜談
+          </NavbarLink>
+          <NavbarLink href="/graduate-student-life" className="text-gray-600 md:hover:text-gray-900 md:hover:underline -mr-2">
+            研究生日常
+          </NavbarLink>
+          <NavbarLink href="/weekly-review" className="text-gray-600 md:hover:text-gray-900 md:hover:underline -mr-2">
+            每週評論
+          </NavbarLink>
+          <NavbarLink href="/current-affairs-commentary" className="text-gray-600 md:hover:text-gray-900 md:hover:underline -mr-2">
+            時事評論
+          </NavbarLink>
+          <NavbarLink href="/collaborative-column" className="text-gray-600 md:hover:text-gray-900 md:hover:underline -mr-2">
+            合作專欄
+          </NavbarLink>
+          <NavbarLink href="/about" className="text-gray-600 md:hover:text-gray-900">
+            關於
+          </NavbarLink>
+        </NavbarCollapse>
+      </Navbar>
+    </>
   );
 }
