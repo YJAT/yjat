@@ -7,7 +7,7 @@ export default function Component() {
   return (
     <>
     <ThemeConfig dark={false}/>
-      <Navbar className='bg-white shadow-md'>
+      <Navbar className='fixed top-0 w-full bg-white shadow-md'>
         <NavbarBrand className='text-black' as={Link} href="/">
           <Image src="/images/logo.jpg" alt="臺灣青年法律人協會" width={40} height={40} />
           臺灣青年法律人協會
