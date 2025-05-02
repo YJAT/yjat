@@ -8,7 +8,7 @@ export const revalidate = 3600; // 每小時重新生成頁面
 
 // 生成靜態路徑
 export async function generateStaticParams() {
-  const posts = await getPosts();
+  const posts = await getPosts(null);
   
   return posts.map((post) => ({
     id: post.id,
@@ -37,7 +37,7 @@ export default async function PostPage({ params }: { params: { id: string } }) {
       <div className="py-20 text-center">
         <h1 className="text-2xl font-bold text-gray-800 dark:text-white mb-4">文章未找到</h1>
         <p className="text-gray-600 dark:text-white">
-          抱歉，我們找不到您請求的文章。它可能已被刪除或移動。
+          抱歉，我們找不到文章。
         </p>
       </div>
     );

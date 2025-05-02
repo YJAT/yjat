@@ -18,6 +18,31 @@ export default function Header() {
                 </Link>
               </li>
               <li>
+                <Link href="/lawyers-chat" className="text-gray-600 hover:text-gray-900">
+                  律師雜談
+                </Link>
+              </li>
+              <li>
+                <Link href="/graduate-student-life" className="text-gray-600 hover:text-gray-900">
+                  研究生日常
+                </Link>
+              </li>
+              <li>
+                <Link href="/weekly-review" className="text-gray-600 hover:text-gray-900">
+                  每週評論
+                </Link>
+              </li>
+              <li>
+                <Link href="/current-affairs-commentary" className="text-gray-600 hover:text-gray-900">
+                  時事評論
+                </Link>
+              </li>
+              <li>
+                <Link href="/collaborative-column" className="text-gray-600 hover:text-gray-900">
+                  合作專欄
+                </Link>
+              </li>
+              <li>
                 <Link href="/about" className="text-gray-600 hover:text-gray-900">
                   關於
                 </Link>
