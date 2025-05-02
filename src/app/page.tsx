@@ -4,7 +4,7 @@ import PostCard from '@/components/PostCard';
 export const revalidate = 3600; // 每小時重新生成頁面
 
 export default async function Home() {
-  const posts = await getPosts();
+  const posts = await getPosts(null);
   
   return (
     <div className="space-y-8">

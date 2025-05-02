@@ -1,4 +1,5 @@
 import { Client } from '@notionhq/client';
+import { equal } from 'assert';
 import { NotionAPI } from 'notion-client';
 
 // 這裡需要填入您的 Notion 集成密鑰
@@ -13,7 +14,15 @@ export const notionX = new NotionAPI();
 export const databaseId = process.env.NOTION_DATABASE_ID;
 
 // 取得部落格文章列表
-export async function getPosts() {
+export async function getPosts(categoryQuery: string | null) {
+
+  const categoryOption = {
+    property: 'Category',
+    select: {
+      equals: categoryQuery || ""
+    },
+  };
+
   try {
     const response = await notion.databases.query({
       database_id: databaseId as string,
@@ -24,12 +33,16 @@ export async function getPosts() {
         },
       ],
       // 您可以根據需要添加過濾條件
-      filter: {
-        property: 'Status',
-        status: {
-          equals: 'Published',
+      filter:{ 
+        and: [
+        {
+          property: 'Status',
+          status: {
+            equals: 'Published',
+          },
         },
-      },
+        categoryOption
+        ]}
     });
 
     return response.results;
