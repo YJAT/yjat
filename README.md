@@ -27,7 +27,7 @@ npm install
 #### 創建 Notion Integration
 
 1. 前往 [Notion 開發者網站](https://www.notion.so/my-integrations)
-2. 點擊 "New integration"
+2. 點選 "New integration"
 3. 填寫整合名稱，例如 "My Blog"
 4. 選擇關聯的工作空間
 5. 點擊 "Submit" 創建集成
@@ -35,16 +35,16 @@ npm install
 
 #### 創建 Notion Database
 
-1. 在 Notion 中創建一個新的數據庫頁面
-2. 新增以下屬性列：
+1. 在 Notion 中創建一個新的資料庫頁面
+2. 新增以下屬性欄位：
    - `Title`（標題）- 標題屬性
    - `Published`（發布日期）- 日期屬性
    - `Status`（狀態）- 選項屬性，須包含 "Published"（公開文章至網站）
    - `Excerpt`（摘要）- 文字屬性
-3. 在資料庫頁面中，點擊右上角的 "Share" 按鈕
-4. 點擊 "Invite" 標籤
+3. 在資料庫頁面中，點擊右上角的 `Share` 按鈕
+4. 點擊 `Invite` 標籤
 5. 在搜尋欄中，找到並選擇您剛剛創建的集成
-6. 點擊 "Invite" 賦予集成訪問權限
+6. 點擊 `Invite` 賦予集成連接權限
 
 #### 取得資料庫 ID
 
@@ -74,7 +74,7 @@ npm run dev
 ### 6. 新增文章
 
 1. 在您的 Notion 資料庫中新增頁面
-2. 設置標題、發布日期和摘要
+2. 設定標題、發布日期和摘要
 3. 將狀態設為 `Published`
 4. 在頁面新增內容
 5. 可以新增封面圖片（可選）
@@ -92,12 +92,18 @@ npm run lint
 
 ## 生產部署
 
-這個網站可以部署到 Vercel、Netlify 或其他支援 Next.js 的平台（採用 Zeabur）。
+這個網站可以部署到 Vercel、Netlify 或其他支援 Next.js 的平台（目前採用 Zeabur）。
 
 ### Vercel 部署
 
 1. push 至 GitHub repo
 2. 在 Vercel 中導入項目
+3. 在環境變數中新增 `NOTION_API_KEY` 和 `NOTION_DATABASE_ID`
+4. 部署
+
+### Zeabur
+1. push 至 GitHub repo
+2. 在 Zeabur 專案中選擇 `建立服務` -> `GitHub`
 3. 在環境變數中新增 `NOTION_API_KEY` 和 `NOTION_DATABASE_ID`
 4. 部署
 
