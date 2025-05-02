@@ -9,14 +9,14 @@
 
 ## 安裝指南
 
-### 1. 克隆倉庫
+### 1. Clone
 
 ```bash
-git clone <repo-url>
+git clone https://github.com/meo2326cc/yjat.git
 cd yjat
 ```
 
-### 2. 安裝依賴
+### 2. 安裝相關套件
 
 ```bash
 npm install
@@ -46,24 +46,24 @@ npm install
 5. 在搜尋欄中，找到並選擇您剛剛創建的集成
 6. 點擊 "Invite" 賦予集成訪問權限
 
-#### 獲取資料庫 ID
+#### 取得資料庫 ID
 
 1. 在瀏覽器中打開您的 Notion Database
 2. 檢視 URL，它應該看起來像這樣：`https://www.notion.so/workspace-name/abcdef123456789...?v=...`
 3. 複製 URL 中 `?v=` 前面的部分（`abcdef123456789...`）
 4. 此為專案的 `NOTION_DATABASE_ID`
 
-### 4. 配置環境變量
+### 4. 環境變數
 
-1. 在項目根目錄中創建一個 `.env.local` 文件
-2. 添加以下內容：
+1. 在項目根目錄中新建 `.env.local` 檔案
+2. 新增以下內容：
 
 ```
-NOTION_API_KEY=your_notion_integration_token
-NOTION_DATABASE_ID=your_notion_database_id
+NOTION_API_KEY= <your_notion_integration_token>
+NOTION_DATABASE_ID= <your_notion_database_id>
 ```
 
-### 5. 運行開發伺服器
+### 5. 執行專案
 
 ```bash
 npm run dev
@@ -75,30 +75,23 @@ npm run dev
 
 1. 在您的 Notion 資料庫中新增頁面
 2. 設置標題、發布日期和摘要
-3. 將狀態設為 "Published"
-4. 在頁面正文中添加內容
-5. 可以添加封面圖片（可選）
+3. 將狀態設為 `Published`
+4. 在頁面新增內容
+5. 可以新增封面圖片（可選）
 6. 保存頁面，您的網站將自動更新內容
 
-## 項目結構
+## 測試
 
-```
-/src
-  /app                  # Next.js App Router 目錄
-    /page.tsx           # 主頁
-    /about              # 關於頁面
-    /posts/[id]         # 動態文章頁面
-  /components           # 共享組件
-    /Header.tsx         # 頁頭
-    /Footer.tsx         # 頁腳
-    /PostCard.tsx       # 文章卡片
-  /lib                  # 工具函數
-    /notion.ts          # Notion API 相關功能
+```bash
+# typescript 檢查
+tsc --noEmit
+# lint 檢查
+npm run lint
 ```
 
 ## 生產部署
 
-這個網站可以部署到 Vercel、Netlify 或其他支援 Next.js 的平台。
+這個網站可以部署到 Vercel、Netlify 或其他支援 Next.js 的平台（採用 Zeabur）。
 
 ### Vercel 部署
 
@@ -109,7 +102,7 @@ npm run dev
 
 ## 參考資源
 
-- [Next.js 文檔](https://nextjs.org/docs)
-- [Notion API 文檔](https://developers.notion.com/)
-- [Tailwind CSS 文檔](https://tailwindcss.com/docs)
+- [Next.js 文件](https://nextjs.org/docs)
+- [Notion API 文件](https://developers.notion.com/)
+- [Tailwind CSS 文件](https://tailwindcss.com/docs)
 
