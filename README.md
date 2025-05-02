@@ -85,6 +85,7 @@ npm run dev
 ```bash
 # typescript 檢查
 tsc --noEmit
+
 # lint 檢查
 npm run lint
 ```
