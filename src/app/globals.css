@@ -29,7 +29,22 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+body::selection {
+  @apply bg-slate-800 text-white
+}
+
 /* .solid-shadow {
-  border: .3px solid hsla(0, 0%, 70%, 0.8);
-  box-shadow: 8px 8px 0px hsla(0, 0%, 70%, 0.8);
+  position: relative;
+}
+
+.solid-shadow::after {
+  content: '';
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  right: -5px;
+  bottom: -5px;
+  background-color: #cacaca;
+  z-index: -1;
+  mix-blend-mode: multiply;
 } */
