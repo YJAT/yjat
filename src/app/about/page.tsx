@@ -7,7 +7,7 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <div className="mx-auto">
+    <div className="container mx-auto px-4 py-8 mb-4">
       <h1 className="text-3xl font-bold mb-8">關於台灣青年法律人協會</h1>
       
       <div className="space-y-6">
