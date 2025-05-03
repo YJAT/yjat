@@ -13,7 +13,7 @@ export default function RootLayout({children}: Readonly<{children: React.ReactNo
     <html lang="zh-TW">
       <body>
         <Header />
-        <main className="flex-grow container mx-auto px-4 py-8">
+        <main>
           {children}
         </main>
         <Footer />

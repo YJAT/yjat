@@ -23,7 +23,7 @@ export default function Footer() {
   }, [pathname]);
 
   return (
-    <FooterComponent ref={footerRef} container className='bg-gray-100 shadow-none mx-auto rounded-none pt-10'>
+    <FooterComponent ref={footerRef} container className='bg-gray-200 shadow-none mx-auto rounded-none pt-10'>
       <div className="w-full container mx-auto">
         <div className="w-full justify-between sm:flex sm:items-start sm:justify-between flex-wrap gap-4">
           <div className='flex gap-x-4 mb-4 md:mb-0'>
@@ -43,7 +43,7 @@ export default function Footer() {
           </div>
           </div>
         </div>
-        <FooterDivider className='lg:my-0 lg:mt-10 lg:mb-6' />
+        <FooterDivider className='lg:my-0 lg:mt-10 lg:mb-6 border-gray-400' />
         <FooterCopyright href="#" by="台灣青年法律人協會™" year={new Date().getFullYear()} className='sm:text-left text-left' />
       </div>
     </FooterComponent>

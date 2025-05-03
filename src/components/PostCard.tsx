@@ -4,7 +4,7 @@ import { zhTW } from 'date-fns/locale';
 import Image from 'next/image';
 
 type PostCardProps = {
-  post: any; // 從 Notion API 獲取的文章數據
+  post: any
 };
 
 export default function PostCard({ post }: PostCardProps) {
@@ -27,7 +27,7 @@ export default function PostCard({ post }: PostCardProps) {
   const author = post.properties.Author?.rich_text[0]?.plain_text || "不具名";
 
   return (
-    <div className="bg-white dark:bg-[#211f29] rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+    <div className="bg-white dark:bg-zinc-700">
       <div className="h-48 overflow-hidden">
         <Image
           width={500}
@@ -38,12 +38,12 @@ export default function PostCard({ post }: PostCardProps) {
           priority
         />
       </div>
-      <div className="p-6">
+      <div className="py-6 px-4">
         <div className='flex items-center justify-between'>
           <p className="text-sm text-gray-500 dark:text-white mb-2">{author}</p>
           <p className="text-sm text-gray-500 dark:text-white mb-2">{publishedDate}</p>
         </div>
-        <h2 className="text-xl font-semibold mb-2 text-gray-800 dark:text-white">
+        <h2 className="relative text-xl font-semibold mb-2 text-gray-800 dark:text-white line-clamp-1">
           <Link href={`/posts/${post.id}`} className="hover:underline">
             {title}
           </Link>
