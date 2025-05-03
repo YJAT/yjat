@@ -1,6 +1,6 @@
 # 臺灣青年法律人協會網站
 
-青法協網站初稿，使用 Ｎotion 作為文章管理後台，建構中。
+青法協網站初稿，使用 Notion 作為文章管理後台，建構中。
 
 ## tech-stack
 
@@ -24,27 +24,27 @@ npm install
 
 ### 3. 設置 Notion Integration
 
-#### 創建 Notion Integration
+#### 建立 Notion Integration
 
 1. 前往 [Notion 開發者網站](https://www.notion.so/my-integrations)
 2. 點選 "New integration"
 3. 填寫整合名稱，例如 "My Blog"
 4. 選擇關聯的工作空間
-5. 點擊 "Submit" 創建集成
+5. 點擊 "Submit" 建立 Integration
 6. 複製顯示的 "Internal Integration Token"（此為專案的 `NOTION_API_KEY`）
 
-#### 創建 Notion Database
+#### 建立 Notion Database
 
-1. 在 Notion 中創建一個新的資料庫頁面
+1. 在 Notion 中建立一個新的資料庫頁面
 2. 新增以下屬性欄位：
    - `Title`（標題）- 標題屬性
    - `Published`（發布日期）- 日期屬性
    - `Status`（狀態）- 選項屬性，須包含 "Published"（公開文章至網站）
    - `Excerpt`（摘要）- 文字屬性
 3. 在資料庫頁面中，點擊右上角的 `Share` 按鈕
-4. 點擊 `Invite` 標籤
+4. 點選 `Invite` 標籤
 5. 在搜尋欄中，找到並選擇您剛剛創建的集成
-6. 點擊 `Invite` 賦予集成連接權限
+6. 點選 `Invite` 賦予集成連接權限
 
 #### 取得資料庫 ID
 
