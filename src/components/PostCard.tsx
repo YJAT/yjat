@@ -28,7 +28,7 @@ export default function PostCard({ post }: PostCardProps) {
 
   return (
     <div className="bg-white dark:bg-zinc-700">
-      <div className="h-48 overflow-hidden">
+      <div className="h-48 overflow-hidden hidden md:block">
         <Image
           width={500}
           height={500}
@@ -39,7 +39,7 @@ export default function PostCard({ post }: PostCardProps) {
         />
       </div>
       <div className="py-6 px-4">
-        <div className='flex items-center justify-between'>
+        <div className='hidden md:flex items-center justify-between'>
           <p className="text-sm text-gray-500 dark:text-white mb-2">{author}</p>
           <p className="text-sm text-gray-500 dark:text-white mb-2">{publishedDate}</p>
         </div>

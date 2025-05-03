@@ -16,18 +16,21 @@ export default async function Home() {
 
   return (
     <>
-      <div className="container mx-auto px-4 py-8">
-        <div className="space-y-8">
-          <section className="mb-12">
-            <h1 className="text-5xl md:text-8xl font-bold text-gray-800 dark:text-white mb-4">臺灣青年<br/>法律人協會</h1>
-            <p className="text-xl text-gray-600 dark:text-gray-100 max-w-2xl">
-              扎根法界，深化參與，守護臺灣。
-            </p>
-          </section>
-          <HomepageSections link='/posts' sectionTitle='最新文章'/>
+      <div className='relative'>
+        <div className="container mx-auto px-4 py-8">
+          <div className="space-y-8">
+            <section className="mb-12">
+              <h1 className="text-5xl md:text-8xl font-bold text-gray-800 dark:text-white mb-4">臺灣青年<br/>法律人協會</h1>
+              <p className="text-xl text-gray-600 dark:text-gray-100 max-w-2xl">
+                扎根法界，深化參與，守護臺灣。
+              </p>
+            </section>
+            <HomepageSections link='/posts' sectionTitle='最新文章'/>
+          </div>
         </div>
+        <div style={{backgroundImage: "url('/images/cover.png')"}} className='bg-cover bg-no-repeat bg-center absolute top-0 bottom-0 right-0 left-0 blur-lg -z-[10]'></div>
       </div>
-      <div className=' bg-gray-100 dark:bg-zinc-800'>
+      <div className='bg-gray-100 dark:bg-zinc-800'>
         <section className='container mx-auto px-4 py-8'>
           {sectionPosts.map((item, index)=>
             <HomepageSections sectionTitle={item.name} category={item.name} link={item.link} key={index}/>  
