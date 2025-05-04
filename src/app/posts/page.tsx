@@ -1,5 +1,7 @@
 import CategoryContent from '@/components/categoryContent'
 
+export const revalidate = 3600;
+
 export default async function Post(){
 
   return (
