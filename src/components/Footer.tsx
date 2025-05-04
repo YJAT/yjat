@@ -35,7 +35,7 @@ export default function Footer() {
           </div>
           <div>
           <FooterLinkGroup>
-            {links.map((item, index) => <FooterLink key={index} href={item.link}>{item.name}</FooterLink> )}
+            {links.slice(1, links.length).map((item, index) => <FooterLink key={index} href={item.link}>{item.name}</FooterLink> )}
           </FooterLinkGroup>
           <div className='flex gap-x-4 lg:justify-end mt-4'>
             <FooterIcon href="https://www.facebook.com/YJAT2017" icon={BsFacebook} />
