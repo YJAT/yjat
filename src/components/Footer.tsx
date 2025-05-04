@@ -44,7 +44,7 @@ export default function Footer() {
           </div>
         </div>
         <FooterDivider className='lg:my-0 lg:mt-10 lg:mb-6 border-gray-400' />
-        <FooterCopyright href="#" by="台灣青年法律人協會™" year={new Date().getFullYear()} className='sm:text-left text-left' />
+        <FooterCopyright href="#" by="臺灣青年法律人協會™" year={new Date().getFullYear()} className='sm:text-left text-left' />
       </div>
     </FooterComponent>
   );
