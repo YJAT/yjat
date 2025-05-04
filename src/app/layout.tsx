@@ -6,6 +6,13 @@ import Footer from "@/components/Footer";
 export const metadata: Metadata = {
   title: "臺灣青年法律人協會",
   description: "扎根法界，深化參與，守護臺灣",
+  openGraph: {
+    title: "臺灣青年法律人協會",
+    description: "扎根法界，深化參與，守護臺灣",
+    images: [{
+      url: '/images/cover.png',
+    }],
+  }
 };
 
 export default function RootLayout({children}: Readonly<{children: React.ReactNode}>) {
