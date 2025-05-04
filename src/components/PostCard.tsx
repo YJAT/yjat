@@ -5,9 +5,10 @@ import Image from 'next/image';
 
 type PostCardProps = {
   post: any
+  showTag?: boolean
 };
 
-export default function PostCard({ post }: PostCardProps) {
+export default function PostCard({ post, showTag = false }: PostCardProps) {
   // 從 Notion 頁面獲取標題
   const title = post.properties.Title.title.map((text: any) => text.plain_text).join('');
   
@@ -26,8 +27,12 @@ export default function PostCard({ post }: PostCardProps) {
 
   const author = post.properties.Author?.rich_text[0]?.plain_text || "不具名";
 
+  const tag = post.properties.Category?.select.name || "無分類";
+
+
   return (
-    <div className="bg-white dark:bg-zinc-700">
+    <div className="relative bg-white dark:bg-zinc-700">
+      { showTag && <div className='absolute -top-2 -left-2 inline-block text-white bg-slate-700 px-4 font-semibold'>{tag}</div> }
       <div className="h-48 overflow-hidden hidden md:block">
         <Image
           width={500}

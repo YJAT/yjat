@@ -4,14 +4,6 @@ const links = [
     name: '最新消息'
   },
   {
-    link: '/lawyers-chat',
-    name: '律師雜談'
-  },
-  {
-    link: '/graduate-student-life',
-    name: '研究生日常'
-  },
-  {
     link: '/weekly-review',
     name: '每週評論'
   },
@@ -22,6 +14,14 @@ const links = [
   {
     link: '/collaborative-column',
     name: '合作專欄'
+  },
+  {
+    link: '/lawyers-chat',
+    name: '律師雜談'
+  },
+  {
+    link: '/graduate-student-life',
+    name: '研究生日常'
   },
   {
     link: '/about',

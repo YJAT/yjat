@@ -1,7 +1,7 @@
 import { getPosts } from "@/lib/notion"
 import PostCard from "./PostCard"
 
-export default async function CategoryContent({category, dataLength}: {category?: string, dataLength?: number }){
+export default async function CategoryContent({category, dataLength, showTag= false}: {category?: string, dataLength?: number, showTag?: boolean }){
     const posts = await getPosts(category)
     const postsArray = posts.slice(0, dataLength || posts.length )
   
@@ -14,7 +14,7 @@ export default async function CategoryContent({category, dataLength}: {category?
         ) : (
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
             {postsArray.map((post) => (
-              <PostCard key={post.id} post={post} />
+              <PostCard key={post.id} post={post} showTag={showTag} />
             ))}
           </div>
         )}

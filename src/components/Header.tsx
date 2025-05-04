@@ -15,13 +15,13 @@ export default function Component() {
         </NavbarBrand>
         <NavbarToggle />
         <NavbarCollapse>
-          {links.map((item, index) => {
+          {links.slice(1, links.length).map((item, index) => {
             return (
               <NavbarLink href={item.link} key={index} className={`text-gray-600 md:hover:text-gray-900 md:hover:underline ${(index + 1 ) === links.length ? '' : '-mr-2' }`}>
               {item.name}
             </NavbarLink>
             )}
-           )}
+          )}
         </NavbarCollapse>
       </Navbar>
     </>

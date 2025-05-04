@@ -1,13 +1,15 @@
 import CategoryContent from '@/components/categoryContent';
 import Link from 'next/link';
 import links from '@/lib/links';
+import Image from 'next/image';
 
 export const revalidate = 3600; // 每小時重新生成頁面
 
 interface homepageSections {
   sectionTitle?: string, 
   category?: string, 
-  link: string
+  link: string,
+  showTag?: boolean,
 }
 
 export default async function Home() {
@@ -20,15 +22,15 @@ export default async function Home() {
         <div className="container mx-auto px-4 py-8">
           <div className="space-y-8">
             <section className="mb-12">
-              <h1 className="text-5xl md:text-8xl font-bold text-gray-800 dark:text-white mb-4">臺灣青年<br/>法律人協會</h1>
-              <p className="text-xl text-gray-600 dark:text-gray-100 max-w-2xl">
+              <h1 className="text-5xl md:text-8xl font-bold text-white mb-4">臺灣青年<br/>法律人協會</h1>
+              <p className="md:text-2xl text-lg text-white max-w-2xl font-semibold">
                 扎根法界，深化參與，守護臺灣。
               </p>
             </section>
-            <HomepageSections link='/posts' sectionTitle='最新文章'/>
+            <HomepageSections showTag={true} link='/posts' sectionTitle='最新文章'/>
           </div>
         </div>
-        <div style={{backgroundImage: "url('/images/cover.png')"}} className='bg-cover bg-no-repeat bg-center absolute top-0 bottom-0 right-0 left-0 blur-lg -z-[10]'></div>
+        <Image src='/images/cover.png' fill={true} alt='臺灣青年法律人協會' className='object-cover absolute top-0 bottom-0 right-0 left-0 blur-lg -z-[10]'/>
       </div>
       <div className='bg-gray-100 dark:bg-zinc-800'>
         <section className='container mx-auto px-4 py-8'>
@@ -41,13 +43,13 @@ export default async function Home() {
   );
 }
 
-async function HomepageSections({sectionTitle, category, link}: homepageSections ){
+async function HomepageSections({sectionTitle, category, link, showTag = false}: homepageSections ){
 
   return(
     <div className='mb-8 last:mb-0'>
       <section>
         <h2 className="text-2xl font-semibold text-gray-800 dark:text-gray-100 mb-6">{sectionTitle}</h2>
-        <CategoryContent category={category} dataLength={4} />
+        <CategoryContent showTag={showTag} category={category} dataLength={4} />
       </section>
       <div className='md:ml-auto md:w-fit bg-gray-300 dark:bg-zinc-600 px-4 py-2 mt-4'>
         <Link href={link} className="font-bold hover:underline" >更多{sectionTitle}</Link>
