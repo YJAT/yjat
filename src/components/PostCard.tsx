@@ -23,7 +23,7 @@ export default function PostCard({ post, showTag = false }: PostCardProps) {
     : '--';
   
   // 從 Notion 頁面獲取封面圖片
-  const coverImage = post.cover?.external?.url || post.cover?.file?.url || '/images/default-cover.png';
+  const coverImage = post.cover?.external?.url || post.cover?.file?.url || '/images/logo.jpg';
 
   const author = post.properties.Author?.rich_text[0]?.plain_text || "不具名";
 
