@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { WebSite, WithContext } from "schema-dts";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
+  //metadataBase: new URL('https://yjat.zeabur.app'),
   title: "臺灣青年法律人協會",
   description: "扎根法界，深化參與，守護臺灣",
   openGraph: {
@@ -15,6 +17,15 @@ export const metadata: Metadata = {
   }
 };
 
+const jsonLd: WithContext<WebSite> = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "url": "https://yjat.zeabur.app",
+  "author": "臺灣青年法律人協會",
+  "abstract": "扎根法界，深化參與，守護臺灣",
+  "description": "扎根法界，深化參與，守護臺灣"
+}
+
 export default function RootLayout({children}: Readonly<{children: React.ReactNode}>) {
   return (
     <html lang="zh-TW">
@@ -25,6 +36,10 @@ export default function RootLayout({children}: Readonly<{children: React.ReactNo
         </main>
         <Footer />
       </body>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
     </html>
   );
 }

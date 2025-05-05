@@ -2,8 +2,15 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 
 export const metadata: Metadata = {
-  title: '關於',
-  description: '關於臺灣青年法律人協會',
+  title: '關於｜臺灣青年法律人協會',
+  description: '過去幾年，青法協持續與所有法律人站在一起，我們關心國會運作危機，我們站上街頭捍衛憲政法制，我們也不間斷撰文推廣民主自由的核心理念。',
+  authors: [{ name: '理事長劉家杭' }],
+  openGraph: {
+    title: "關於｜臺灣青年法律人協會",
+    description: "過去幾年，青法協持續與所有法律人站在一起，我們關心國會運作危機，我們站上街頭捍衛憲政法制，我們也不間斷撰文推廣民主自由的核心理念。",
+    type: 'article',
+    images: '/images/logo.jpg',
+  },
 };
 
 export default function AboutPage() {
