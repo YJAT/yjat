@@ -31,7 +31,7 @@ export default function PostCard({ post, showTag = false }: PostCardProps) {
 
 
   return (
-    <div className="relative bg-white dark:bg-zinc-700">
+    <div className="relative bg-white dark:bg-zinc-700 shadow-md">
       { showTag && <div className='absolute -top-2 -left-2 inline-block text-white bg-slate-700 px-4 font-semibold'>{tag}</div> }
       <div className="h-48 overflow-hidden hidden md:block">
         <Image
@@ -48,11 +48,11 @@ export default function PostCard({ post, showTag = false }: PostCardProps) {
           <p className="text-sm text-gray-500 dark:text-white mb-2">{author}</p>
           <p className="text-sm text-gray-500 dark:text-white mb-2">{publishedDate}</p>
         </div>
-        <h2 className="relative text-xl font-semibold mb-2 text-gray-800 dark:text-white line-clamp-1">
+        <h3 className="relative text-xl font-semibold mb-2 text-gray-800 dark:text-white line-clamp-1">
           <Link href={`/posts/${post.id}`} className="hover:underline">
             {title}
           </Link>
-        </h2>
+        </h3>
         <p className="text-gray-600 dark:text-white line-clamp-3 h-18">{excerpt}</p>
         <div className="mt-4">
           <Link href={`/posts/${post.id}`} className="font-bold hover:underline">

@@ -5,7 +5,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  //metadataBase: new URL('https://yjat.zeabur.app'),
+  metadataBase: new URL('https://yjat.zeabur.app'),
   title: "臺灣青年法律人協會",
   description: "扎根法界，深化參與，守護臺灣",
   openGraph: {
