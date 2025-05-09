@@ -1,4 +1,4 @@
-import { getPostById, getPosts } from '@/lib/notion';
+import { getPostById, getPostBySlug , getPosts } from '@/lib/notion';
 import { format } from 'date-fns';
 import { zhTW } from 'date-fns/locale';
 import NotionPage from '@/components/notion/NotionPage';
@@ -17,8 +17,7 @@ export async function generateStaticParams() {
 
 export default async function PostPage({ params }: { params: { id: string } }) {
   const { id } = params;
-  const postData : any = await getPostById(id);
-  
+  const postData : any = await getPostBySlug(id);
   if (!postData) {
     return (
       <div className="container mx-auto px-4 py-20 text-center">
