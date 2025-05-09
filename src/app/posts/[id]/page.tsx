@@ -1,4 +1,4 @@
-import { getPostById, getPosts } from '@/lib/notion';
+import { getPostById, getPostBySlug , getPosts } from '@/lib/notion';
 import { format } from 'date-fns';
 import { zhTW } from 'date-fns/locale';
 import NotionPage from '@/components/notion/NotionPage';
