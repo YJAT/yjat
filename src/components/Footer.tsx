@@ -1,7 +1,7 @@
-"use client"
 import Image from 'next/image';
-import { Footer as FooterComponent, FooterIcon, FooterCopyright, FooterDivider, FooterLink, FooterLinkGroup } from "flowbite-react";
+import { Footer as FooterComponent, FooterCopyright, FooterDivider, FooterLink, FooterLinkGroup } from "flowbite-react";
 import links from '@/lib/links';
+import Link from 'next/link';
 import { BsFacebook, BsInstagram } from "react-icons/bs";
 import FooterPosition from './FooterPosition';
 
@@ -21,9 +21,13 @@ export default function Footer() {
           <FooterLinkGroup>
             {links.slice(1, links.length).map((item, index) => <FooterLink key={index} href={item.link}>{item.name}</FooterLink> )}
           </FooterLinkGroup>
-          <div className='flex gap-x-4 lg:justify-end mt-4'>
-            <FooterIcon href="https://www.facebook.com/YJAT2017" icon={BsFacebook} />
-            <FooterIcon href="https://www.instagram.com/yjat_since2017" icon={BsInstagram} />
+          <div className='flex gap-x-6 lg:justify-end mt-4'>
+            <Link className='text-[#6B7280]' href='https://www.facebook.com/YJAT2017'>
+              <BsFacebook className='w-6 h-6'/>
+            </Link>
+            <Link className='text-[#6B7280]' href='https://www.instagram.com/yjat_since2017'>
+              <BsInstagram className='w-6 h-6'/>
+            </Link>
           </div>
           </div>
         </div>
