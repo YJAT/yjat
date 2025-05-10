@@ -1,6 +1,19 @@
 import CategoryContent from '@/components/categoryContent'
+import { Metadata } from 'next';
 
 export const revalidate = 3600;
+
+export const metadata: Metadata = {
+  title: "律師雜談｜臺灣青年法律人協會",
+  description: "扎根法界，深化參與，守護臺灣",
+  openGraph: {
+    title: "律師雜談｜臺灣青年法律人協會",
+    description: "扎根法界，深化參與，守護臺灣",
+    images: [{
+      url: '/images/cover.png',
+    }],
+  }
+};
 
 export default async function Page(){
 

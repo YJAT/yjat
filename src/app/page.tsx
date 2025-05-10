@@ -22,8 +22,11 @@ export default async function Home() {
         <div className="container mx-auto px-4 py-8">
           <div className="space-y-8">
             <section className="mb-12">
-              <h1 className="text-5xl md:text-8xl font-bold text-white mb-4">臺灣青年<br/>法律人協會</h1>
-              <p className="md:text-2xl text-lg text-white max-w-2xl font-semibold">
+              <h1 className="text-border text-gray-100 text-5xl md:text-8xl font-bold mb-4">
+                臺灣青年
+                <span className='block'>法律人協會</span>
+              </h1>
+              <p className="text-border md:text-2xl text-lg text-gray-100  max-w-2xl font-semibold">
                 扎根法界，深化參與，守護臺灣。
               </p>
             </section>
@@ -48,12 +51,14 @@ async function HomepageSections({sectionTitle, category, link, showTag = false}:
   return(
     <div className='mb-8 last:mb-0'>
       <section>
-        <h2 className="text-2xl font-semibold text-gray-800 dark:text-gray-100 mb-6">{sectionTitle}</h2>
+        <div className='relative w-fit z-[0]'>
+          <h2 className="section-title text-border">{sectionTitle}</h2>
+        </div>
         <CategoryContent showTag={showTag} category={category} dataLength={4} />
+        <div className='md:ml-auto md:w-fit bg-gray-300 dark:bg-zinc-600 px-4 py-2 mt-4'>
+          <Link href={link} className="font-bold hover:underline" >更多{sectionTitle}</Link>
+        </div>
       </section>
-      <div className='md:ml-auto md:w-fit bg-gray-300 dark:bg-zinc-600 px-4 py-2 mt-4'>
-        <Link href={link} className="font-bold hover:underline" >更多{sectionTitle}</Link>
-      </div>
     </div>
   )
 
