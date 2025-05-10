@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import { WebSite, WithContext } from "schema-dts";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -37,6 +38,7 @@ export default function RootLayout({children}: Readonly<{children: React.ReactNo
         </main>
         <Footer />
       </body>
+      <GoogleAnalytics gaId="G-SKHSK96QYN"/>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
