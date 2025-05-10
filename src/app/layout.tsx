@@ -5,7 +5,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://yjat.zeabur.app'),
+  metadataBase: new URL('https://schema.org'),
   title: "臺灣青年法律人協會",
   description: "扎根法界，深化參與，守護臺灣",
   openGraph: {
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 const jsonLd: WithContext<WebSite> = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  "url": "https://yjat.zeabur.app",
+  "url": "https://bera2017.org",
   "author": "臺灣青年法律人協會",
   "abstract": "扎根法界，深化參與，守護臺灣",
   "description": "扎根法界，深化參與，守護臺灣"
