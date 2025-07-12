@@ -1,9 +1,9 @@
-import { getPosts } from "@/lib/notion"
-import PostCard from "./PostCard"
+import { getPosts } from '@/lib/notion';
+import PostCard from './PostCard';
 
 export default async function CategoryContent({category, dataLength, showTag= false}: {category?: string, dataLength?: number, showTag?: boolean }){
-    const posts = await getPosts(category)
-    const postsArray = posts.slice(0, dataLength || posts.length )
+    const posts = await getPosts(category);
+    const postsArray = posts.slice(0, dataLength || posts.length );
   
     return (
       <div>
@@ -19,5 +19,5 @@ export default async function CategoryContent({category, dataLength, showTag= fa
           </div>
         )}
       </div>
-    )
+    );
   }

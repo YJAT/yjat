@@ -18,7 +18,7 @@ export async function getPosts(categoryQuery?: string) {
   const categoryOption = {
     property: 'Category',
     select: {
-      equals: categoryQuery || ""
+      equals: categoryQuery || ''
     },
   };
 
@@ -44,7 +44,7 @@ export async function getPosts(categoryQuery?: string) {
         ]}
     });
 
-    return response.results
+    return response.results;
   } catch (error) {
     console.error('Error fetching posts:', error);
     return [];
