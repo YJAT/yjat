@@ -14,7 +14,7 @@ interface homepageSections {
 
 export default async function Home() {
 
-  const sectionPosts = links.slice(1, (links.length-1))
+  const sectionPosts = links.slice(1, (links.length-1));
 
   return (
     <>
@@ -60,6 +60,6 @@ async function HomepageSections({sectionTitle, category, link, showTag = false}:
         </div>
       </section>
     </div>
-  )
+  );
 
 }

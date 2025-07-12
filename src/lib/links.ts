@@ -27,6 +27,6 @@ const links = [
     link: '/about',
     name: '關於'
   },
-]
+];
 
-export default links
+export default links;

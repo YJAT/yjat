@@ -1,7 +1,7 @@
 import Link from 'next/link';
-import Image from 'next/image'
+import Image from 'next/image';
 import links from '@/lib/links';
-import { Navbar, NavbarBrand, NavbarCollapse, NavbarLink, NavbarToggle, ThemeConfig } from "flowbite-react";
+import { Navbar, NavbarBrand, NavbarCollapse, NavbarLink, NavbarToggle, ThemeConfig } from 'flowbite-react';
 
 
 export default function Component() {
@@ -20,7 +20,7 @@ export default function Component() {
               <NavbarLink href={item.link} key={index} className={`text-gray-600 md:hover:text-gray-900 md:hover:underline ${(index + 1 ) === links.length ? '' : '-mr-2' }`}>
               {item.name}
             </NavbarLink>
-            )}
+            );}
           )}
         </NavbarCollapse>
       </Navbar>

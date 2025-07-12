@@ -32,7 +32,7 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
   const description = notionPage.properties.Excerpt?.rich_text
   ? notionPage.properties.Excerpt.rich_text.map((text: any) => text.plain_text).join('')
   : '無摘要';
-  const author = notionPage.properties.Author?.rich_text[0]?.plain_text || "臺灣青年法律人協會";
+  const author = notionPage.properties.Author?.rich_text[0]?.plain_text || '臺灣青年法律人協會';
   
   return {
     title: `${title} | 臺灣青年法律人協會`,
@@ -73,7 +73,7 @@ export default async function PostPage({ params }: { params: { id: string } }) {
   
   const coverImage = notionPage.cover?.external?.url || notionPage.cover?.file?.url || null;
   
-  const author = notionPage.properties.Author?.rich_text[0]?.plain_text || "不具名";
+  const author = notionPage.properties.Author?.rich_text[0]?.plain_text || '不具名';
 
   return (
     <div className='container mx-auto px-4 py-8'>
