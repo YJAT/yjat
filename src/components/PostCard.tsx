@@ -2,16 +2,10 @@ import Link from 'next/link';
 import { format } from 'date-fns';
 import { zhTW } from 'date-fns/locale';
 import Image from 'next/image';
-
-type PostCardProps = {
-  post: any
-  showTag?: boolean
-};
-
+import { PostCardProps } from '@/types/notion';
 export default function PostCard({ post, showTag = false }: PostCardProps) {
   // 從 Notion 頁面獲取標題
-  const title = post.properties.Title.title.map((text: any) => text.plain_text).join('');
-  
+  const title = post.properties.Title.title.map((text) => text.plain_text).join('');
   // 從 Notion 頁面獲取摘要
   const excerpt = post.properties.Excerpt?.rich_text
     ? post.properties.Excerpt.rich_text.map((text: any) => text.plain_text).join('')
@@ -27,7 +21,7 @@ export default function PostCard({ post, showTag = false }: PostCardProps) {
 
   const author = post.properties.Author?.rich_text[0]?.plain_text || '不具名';
 
-  const tag = post.properties.Category?.select.name || '無分類';
+  const tag = post.properties.Category.select?.name || '無分類';
 
 
   return (
