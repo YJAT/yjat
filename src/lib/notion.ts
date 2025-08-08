@@ -1,5 +1,6 @@
 import { Client } from '@notionhq/client';
 import { NotionAPI } from 'notion-client';
+import { NotionPost } from '@/types/notion';
 
 // 這裡需要填入您的 Notion 集成密鑰
 export const notion = new Client({
@@ -13,7 +14,7 @@ export const notionX = new NotionAPI();
 export const databaseId = process.env.NOTION_DATABASE_ID;
 
 // 取得部落格文章列表
-export async function getPosts(categoryQuery?: string) {
+export async function getPosts(categoryQuery?: string): Promise<NotionPost[]> {
 
   const categoryOption = {
     property: 'Category',
@@ -44,7 +45,7 @@ export async function getPosts(categoryQuery?: string) {
         ]}
     });
 
-    return response.results;
+    return response.results as unknown as NotionPost[];
   } catch (error) {
     console.error('Error fetching posts:', error);
     return [];
