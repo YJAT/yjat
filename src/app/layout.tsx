@@ -14,36 +14,36 @@ export const metadata: Metadata = {
   openGraph: {
     title: '臺灣青年法律人協會',
     description: '扎根法界，深化參與，守護臺灣',
-    images: [{
-      url: '/images/cover.png',
-    }],
-  }
+    images: [
+      {
+        url: '/images/cover.png',
+      },
+    ],
+  },
 };
 
 const jsonLd: WithContext<WebSite> = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
-  'url': 'https://bera2017.org',
-  'author': '臺灣青年法律人協會',
-  'abstract': '扎根法界，深化參與，守護臺灣',
-  'description': '扎根法界，深化參與，守護臺灣'
+  url: 'https://bera2017.org',
+  author: '臺灣青年法律人協會',
+  abstract: '扎根法界，深化參與，守護臺灣',
+  description: '扎根法界，深化參與，守護臺灣',
 };
 
-export default function RootLayout({children}: Readonly<{children: React.ReactNode}>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="zh-TW">
+    <html lang='zh-TW'>
       <body>
         <Header />
-        <main>
-          {children}
-        </main>
+        <main>{children}</main>
         <Footer>
-          <FooterStatic/>
+          <FooterStatic />
         </Footer>
       </body>
-      <GoogleAnalytics gaId="G-SKHSK96QYN"/>
+      <GoogleAnalytics gaId='G-SKHSK96QYN' />
       <script
-        type="application/ld+json"
+        type='application/ld+json'
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
     </html>

@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&display=swap');
-@import "tailwindcss";
+@import 'tailwindcss';
 @plugin "flowbite-react/plugin/tailwindcss";
 @source "../../.flowbite-react/class-list.json";
 :root {
@@ -12,9 +12,9 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-  --font-noto: "Noto Sans TC", sans-serif;
+  --font-noto: 'Noto Sans TC', sans-serif;
 
-  --spacing-18: 4.5rem  /* 72px */
+  --spacing-18: 4.5rem /* 72px */;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -27,19 +27,23 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  @apply font-noto
+  @apply font-noto;
 }
 
 body::selection {
-  @apply bg-slate-800 text-white
+  @apply bg-slate-800 text-white;
 }
 
-.text-border{
-  text-shadow: -1px 0  #0c0a09, 0 1px  #0c0a09, 1px 0  #0c0a09, 0 -1px  #0c0a09;
+.text-border {
+  text-shadow:
+    -1px 0 #0c0a09,
+    0 1px #0c0a09,
+    1px 0 #0c0a09,
+    0 -1px #0c0a09;
 }
 
 .section-title {
-  @apply text-2xl font-semibold text-gray-100 mb-6
+  @apply mb-6 text-2xl font-semibold text-gray-100;
 }
 
 .section-title::after {
@@ -50,7 +54,7 @@ body::selection {
   right: -0.5rem;
   content: '　';
   height: 1rem;
-  @apply bg-slate-700
+  @apply bg-slate-700;
 }
 
 /* .solid-shadow {
