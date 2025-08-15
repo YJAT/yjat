@@ -1,29 +1,65 @@
-name: Lint
+name: CI
 
 on:
   pull_request:
     branches: [ main ]
 
 jobs:
-  typescript-check:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Node.js settings
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Cache node modules
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Prettier
+        run: npm run pretty:check
+      
+      - name: ESLint 
+        run: npm run lint
+
+  type-check:
     name: TypeScript check
     runs-on: ubuntu-latest
     
     steps:
-      - name: Scan code
-        uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v4
       
       - name: Node.js settings
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: '18'
           cache: 'npm'
+
+      - name: Cache node modules
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
       
       - name: Install dependencies
         run: npm ci
       
       - name: TypeScript compiler
         run: npx tsc --noEmit
-      
-      - name: ESLint 
-        run: npm run lint
