@@ -40,12 +40,12 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <Footer>
           <FooterStatic />
         </Footer>
+        <GoogleAnalytics gaId='G-SKHSK96QYN' />
+        <script
+          type='application/ld+json'
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
       </body>
-      <GoogleAnalytics gaId='G-SKHSK96QYN' />
-      <script
-        type='application/ld+json'
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
     </html>
   );
 }

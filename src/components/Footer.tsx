@@ -9,7 +9,6 @@ export default function Footer({ children }: { children: ReactElement }) {
 
   useEffect(() => {
     if (footerRef.current) {
-      console.log(footerRef.current);
       const bodyHeight = document.body.offsetHeight;
       if (bodyHeight < window.innerHeight) {
         footerRef.current.classList.add('fixed', 'bottom-0', 'w-full');
