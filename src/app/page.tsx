@@ -6,60 +6,74 @@ import Image from 'next/image';
 export const revalidate = 3600; // 每小時重新生成頁面
 
 interface homepageSections {
-  sectionTitle?: string, 
-  category?: string, 
-  link: string,
-  showTag?: boolean,
+  sectionTitle?: string;
+  category?: string;
+  link: string;
+  showTag?: boolean;
 }
 
 export default async function Home() {
-
-  const sectionPosts = links.slice(1, (links.length-1));
+  const sectionPosts = links.slice(1, links.length - 1);
 
   return (
     <>
       <div className='relative'>
-        <div className="container mx-auto px-4 py-8">
-          <div className="space-y-8">
-            <section className="mb-12">
-              <h1 className="text-border text-gray-100 text-5xl md:text-8xl font-bold mb-4">
+        <div className='container mx-auto px-4 py-8'>
+          <div className='space-y-8'>
+            <section className='mb-12'>
+              <h1 className='text-border mb-4 text-5xl font-bold text-gray-100 md:text-8xl'>
                 臺灣青年
                 <span className='block'>法律人協會</span>
               </h1>
-              <p className="text-border md:text-2xl text-lg text-gray-100  max-w-2xl font-semibold">
+              <p className='text-border max-w-2xl text-lg font-semibold text-gray-100 md:text-2xl'>
                 扎根法界，深化參與，守護臺灣。
               </p>
             </section>
-            <HomepageSections showTag={true} link='/posts' sectionTitle='最新文章'/>
+            <HomepageSections showTag={true} link='/posts' sectionTitle='最新文章' />
           </div>
         </div>
-        <Image src='/images/cover.png' fill={true} alt='臺灣青年法律人協會' className='object-cover absolute top-0 bottom-0 right-0 left-0 blur-lg -z-[10]'/>
+        <Image
+          src='/images/cover.png'
+          fill={true}
+          alt='臺灣青年法律人協會'
+          className='absolute top-0 right-0 bottom-0 left-0 -z-[10] object-cover blur-lg'
+        />
       </div>
       <div className='bg-gray-100 dark:bg-zinc-800'>
         <section className='container mx-auto px-4 py-8'>
-          {sectionPosts.map((item, index)=>
-            <HomepageSections sectionTitle={item.name} category={item.name} link={item.link} key={index}/>  
-          )}
+          {sectionPosts.map((item, index) => (
+            <HomepageSections
+              sectionTitle={item.name}
+              category={item.name}
+              link={item.link}
+              key={index}
+            />
+          ))}
         </section>
       </div>
     </>
   );
 }
 
-async function HomepageSections({sectionTitle, category, link, showTag = false}: homepageSections ){
-
-  return(
+async function HomepageSections({
+  sectionTitle,
+  category,
+  link,
+  showTag = false,
+}: homepageSections) {
+  return (
     <div className='mb-8 last:mb-0'>
       <section>
-        <div className='relative w-fit z-[0]'>
-          <h2 className="section-title text-border">{sectionTitle}</h2>
+        <div className='relative z-[0] w-fit'>
+          <h2 className='section-title text-border'>{sectionTitle}</h2>
         </div>
         <CategoryContent showTag={showTag} category={category} dataLength={4} />
-        <div className='md:ml-auto md:w-fit bg-gray-300 dark:bg-zinc-600 px-4 py-2 mt-4'>
-          <Link href={link} className="font-bold hover:underline" >更多{sectionTitle}</Link>
+        <div className='mt-4 bg-gray-300 px-4 py-2 md:ml-auto md:w-fit dark:bg-zinc-600'>
+          <Link href={link} className='font-bold hover:underline'>
+            更多{sectionTitle}
+          </Link>
         </div>
       </section>
     </div>
   );
-
 }

@@ -15,7 +15,7 @@ export const revalidate = 3600; // 每小時重新生成頁面
 // 生成靜態路徑
 export async function generateStaticParams() {
   const posts = await getPosts();
-  
+
   return posts.map((post) => ({
     id: post.id,
   }));
@@ -27,13 +27,13 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
 
   const { page } = postData;
   const notionPage = page as any;
-  
+
   const title = notionPage.properties.Title.title.map((text: any) => text.plain_text).join('');
   const description = notionPage.properties.Excerpt?.rich_text
-  ? notionPage.properties.Excerpt.rich_text.map((text: any) => text.plain_text).join('')
-  : '無摘要';
+    ? notionPage.properties.Excerpt.rich_text.map((text: any) => text.plain_text).join('')
+    : '無摘要';
   const author = notionPage.properties.Author?.rich_text[0]?.plain_text || '臺灣青年法律人協會';
-  
+
   return {
     title: `${title} | 臺灣青年法律人協會`,
     description,
@@ -50,55 +50,58 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
 
 export default async function PostPage({ params }: { params: { id: string } }) {
   const { id } = params;
-  const postData : any = await getPostWithCache(id);
-  
+  const postData: any = await getPostWithCache(id);
+
   if (!postData) {
     return (
-      <div className="container mx-auto px-4 py-20 text-center">
-        <h1 className="text-2xl font-bold text-gray-800 dark:text-white mb-4">找不到文章</h1>
-        <p className="text-gray-600 dark:text-white">
-          抱歉，我們找不到文章。
-        </p>
+      <div className='container mx-auto px-4 py-20 text-center'>
+        <h1 className='mb-4 text-2xl font-bold text-gray-800 dark:text-white'>找不到文章</h1>
+        <p className='text-gray-600 dark:text-white'>抱歉，我們找不到文章。</p>
       </div>
     );
   }
-  
+
   const { page, recordMap } = postData;
-  
+
   const notionPage = page as any;
-  
+
   const title = notionPage.properties.Title.title.map((text: any) => text.plain_text).join('');
-  
-  const publishedDate = notionPage.properties.Published?.date?.start ? format(new Date(notionPage.properties.Published.date.start), 'yyyy年MM月dd日', { locale: zhTW }) : '--';
-  
+
+  const publishedDate = notionPage.properties.Published?.date?.start
+    ? format(new Date(notionPage.properties.Published.date.start), 'yyyy年MM月dd日', {
+        locale: zhTW,
+      })
+    : '--';
+
   const coverImage = notionPage.cover?.external?.url || notionPage.cover?.file?.url || null;
-  
+
   const author = notionPage.properties.Author?.rich_text[0]?.plain_text || '不具名';
 
   return (
     <div className='container mx-auto px-4 py-8'>
-      <article className="max-w-2xl mx-auto">
-        <div className="mb-6">
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white px-4 mb-4 border-l-4 border-l-emerald-500">{title}</h1>
-          <div className="text-gray-600 dark:text-gray-200 text-sm">發布於 {publishedDate}</div>
-          <div className='text-gray-600 dark:text-gray-200 text-sm mt-2'>作者：{author}</div>
+      <article className='mx-auto max-w-2xl'>
+        <div className='mb-6'>
+          <h1 className='mb-4 border-l-4 border-l-emerald-500 px-4 text-3xl font-bold text-gray-900 md:text-4xl dark:text-white'>
+            {title}
+          </h1>
+          <div className='text-sm text-gray-600 dark:text-gray-200'>發布於 {publishedDate}</div>
+          <div className='mt-2 text-sm text-gray-600 dark:text-gray-200'>作者：{author}</div>
         </div>
-  
+
         {coverImage && (
-          <div className="mb-8">
+          <div className='mb-8'>
             <Image
               width={1000}
               height={1000}
               src={coverImage}
               alt={title}
-              className="w-full h-auto rounded-lg shadow-md"
+              className='h-auto w-full rounded-lg shadow-md'
             />
           </div>
         )}
-        
+
         <NotionPage recordMap={recordMap} />
       </article>
     </div>
   );
-  }
-
+}

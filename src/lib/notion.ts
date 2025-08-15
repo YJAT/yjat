@@ -15,11 +15,10 @@ export const databaseId = process.env.NOTION_DATABASE_ID;
 
 // 取得部落格文章列表
 export async function getPosts(categoryQuery?: string): Promise<NotionPost[]> {
-
   const categoryOption = {
     property: 'Category',
     select: {
-      equals: categoryQuery || ''
+      equals: categoryQuery || '',
     },
   };
 
@@ -33,16 +32,17 @@ export async function getPosts(categoryQuery?: string): Promise<NotionPost[]> {
         },
       ],
       // 您可以根據需要添加過濾條件
-      filter:{ 
+      filter: {
         and: [
-        {
-          property: 'Status',
-          status: {
-            equals: 'Published',
+          {
+            property: 'Status',
+            status: {
+              equals: 'Published',
+            },
           },
-        },
-        categoryOption
-        ]}
+          categoryOption,
+        ],
+      },
     });
 
     return response.results as unknown as NotionPost[];
@@ -57,10 +57,10 @@ export async function getPostById(pageId: string) {
   try {
     // 使用官方 API 獲取頁面屬性
     const page = await notion.pages.retrieve({ page_id: pageId });
-    
+
     // 使用非官方 API 獲取完整內容
     const recordMap = await notionX.getPage(pageId);
-    
+
     return { page, recordMap };
   } catch (error) {
     console.error(`Error fetching post ${pageId}:`, error);

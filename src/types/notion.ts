@@ -1,5 +1,7 @@
-import { DatePropertyItemObjectResponse, SelectPropertyItemObjectResponse } from '@notionhq/client/build/src/api-endpoints';
-
+import {
+  DatePropertyItemObjectResponse,
+  SelectPropertyItemObjectResponse,
+} from '@notionhq/client/build/src/api-endpoints';
 
 // Rich Text 項目的基礎型別
 export interface RichTextItem {
@@ -36,11 +38,10 @@ export interface ActualRichTextProperty {
 
 // Notion Page 的封面圖片型別 - 符合實際 API 回應
 type ExternalPageCoverResponse = {
-  type: 'external'
-  external: { url: string },
-  file?: { [key: string]: string | undefined};
-}
-
+  type: 'external';
+  external: { url: string };
+  file?: { [key: string]: string | undefined };
+};
 
 // 完整的 Notion Post 型別
 export interface NotionPost {

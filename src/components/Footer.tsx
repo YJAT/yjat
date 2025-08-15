@@ -3,11 +3,10 @@
 import { ReactElement, useEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
 
-export default function Footer({children}: {children: ReactElement}) {
-
+export default function Footer({ children }: { children: ReactElement }) {
   const pathname = usePathname();
   const footerRef = useRef<HTMLDivElement>(null);
-  
+
   useEffect(() => {
     if (footerRef.current) {
       console.log(footerRef.current);
@@ -20,10 +19,5 @@ export default function Footer({children}: {children: ReactElement}) {
     }
   }, [pathname]);
 
-  return (
-    <div ref={footerRef}>
-      {children}
-    </div>
-  );
+  return <div ref={footerRef}>{children}</div>;
 }
-
