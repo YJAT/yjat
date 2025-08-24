@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://bera2017.org'),
   title: '臺灣青年法律人協會',
   description: '扎根法界，深化參與，守護臺灣',
-  robots: 'noindex,nofollow',
+  robots: 'index,follow',
   openGraph: {
     title: '臺灣青年法律人協會',
     description: '扎根法界，深化參與，守護臺灣',
