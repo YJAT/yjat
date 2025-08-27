@@ -22,7 +22,7 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
-  const { id } = params;
+  const { id } = await params;
   const postData: any = await getPostWithCache(id); // 使用緩存版本
 
   const { page } = postData;
@@ -49,7 +49,7 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
 }
 
 export default async function PostPage({ params }: { params: { id: string } }) {
-  const { id } = params;
+  const { id } = await params;
   const postData: any = await getPostWithCache(id);
 
   if (!postData) {
