@@ -26,12 +26,13 @@ export interface RichTextItem {
 
 // 實際的 Notion Title 屬性型別
 export interface ActualTitleProperty extends Omit<TitlePropertyItemObjectResponse, 'title'> {
-  title: RichTextItem[]
+  title: RichTextItem[];
 }
 
 // 實際的 Notion Rich Text 屬性型別
-export interface ActualRichTextProperty extends Omit<RichTextPropertyItemObjectResponse, 'rich_text' > {
-  rich_text: RichTextItem[]
+export interface ActualRichTextProperty
+  extends Omit<RichTextPropertyItemObjectResponse, 'rich_text'> {
+  rich_text: RichTextItem[];
 }
 
 // Notion Page 的封面圖片型別 - 符合實際 API 回應
