@@ -1,6 +1,8 @@
 import {
   DatePropertyItemObjectResponse,
   SelectPropertyItemObjectResponse,
+  RichTextPropertyItemObjectResponse,
+  TitlePropertyItemObjectResponse,
 } from '@notionhq/client/build/src/api-endpoints';
 
 // Rich Text 項目的基礎型別
@@ -23,16 +25,13 @@ export interface RichTextItem {
 }
 
 // 實際的 Notion Title 屬性型別
-export interface ActualTitleProperty {
-  id: string;
-  type: 'title';
+export interface ActualTitleProperty extends Omit<TitlePropertyItemObjectResponse, 'title'> {
   title: RichTextItem[];
 }
 
 // 實際的 Notion Rich Text 屬性型別
-export interface ActualRichTextProperty {
-  id: string;
-  type: 'rich_text';
+export interface ActualRichTextProperty
+  extends Omit<RichTextPropertyItemObjectResponse, 'rich_text'> {
   rich_text: RichTextItem[];
 }
 
