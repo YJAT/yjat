@@ -1,4 +1,4 @@
-import { getPostById, getPosts } from '@/lib/notion';
+import { getPostById, getPostBySlug, getPosts } from '@/lib/notion';
 import { format } from 'date-fns';
 import { zhTW } from 'date-fns/locale';
 import NotionPage from '@/components/notion/NotionPage';
@@ -10,6 +10,19 @@ const getPostWithCache = cache(async (id: string) => {
   return await getPostById(id);
 });
 
+const getPostSlugWithCache = cache(async (id: string) => {
+  return await getPostBySlug(id);
+});
+
+async function getPostHandler(id: string) {
+  if (id.startsWith('content_')) {
+    const postId = id.split('content_')[1];
+    return await getPostWithCache(postId);
+  } else {
+    return await getPostSlugWithCache(id);
+  }
+}
+
 export const revalidate = 3600; // 每小時重新生成頁面
 
 // 生成靜態路徑
@@ -17,7 +30,7 @@ export async function generateStaticParams() {
   const posts = await getPosts();
 
   return posts.map((post) => ({
-    id: post.id,
+    id: post.properties.Slug.rich_text[0]?.plain_text || 'content_' + post.id,
   }));
 }
 
@@ -27,34 +40,42 @@ export async function generateMetadata({
   params: Promise<{ id: string }>;
 }): Promise<Metadata> {
   const { id } = await params;
-  const postData: any = await getPostWithCache(id); // 使用緩存版本
 
-  const { page } = postData;
-  const notionPage = page as any;
+  const postData = await getPostHandler(id);
 
-  const title = notionPage.properties.Title.title.map((text: any) => text.plain_text).join('');
-  const description = notionPage.properties.Excerpt?.rich_text
-    ? notionPage.properties.Excerpt.rich_text.map((text: any) => text.plain_text).join('')
-    : '無摘要';
-  const author = notionPage.properties.Author?.rich_text[0]?.plain_text || '臺灣青年法律人協會';
+  if (postData) {
+    const { page } = postData;
+    const notionPage = page as any;
 
-  return {
-    title: `${title} | 臺灣青年法律人協會`,
-    description,
-    authors: [{ name: author }],
-    openGraph: {
-      title,
+    const title = notionPage.properties.Title.title.map((text: any) => text.plain_text).join('');
+    const description = notionPage.properties.Excerpt?.rich_text
+      ? notionPage.properties.Excerpt.rich_text.map((text: any) => text.plain_text).join('')
+      : '無摘要';
+    const author = notionPage.properties.Author?.rich_text[0]?.plain_text || '臺灣青年法律人協會';
+
+    return {
+      title: `${title} | 臺灣青年法律人協會`,
       description,
-      type: 'article',
-      publishedTime: notionPage.properties.Published?.date?.start || undefined,
-      images: notionPage.cover?.external?.url || notionPage.cover?.file?.url || '/images/logo.jpg',
-    },
-  };
+      authors: [{ name: author }],
+      openGraph: {
+        title,
+        description,
+        type: 'article',
+        publishedTime: notionPage.properties.Published?.date?.start || undefined,
+        images:
+          notionPage.cover?.external?.url || notionPage.cover?.file?.url || '/images/logo.jpg',
+      },
+    };
+  } else {
+    return {
+      title: '找不到文章 | 臺灣青年法律人協會',
+    };
+  }
 }
 
 export default async function PostPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
-  const postData: any = await getPostWithCache(id);
+  const postData = await getPostHandler(id);
 
   if (!postData) {
     return (

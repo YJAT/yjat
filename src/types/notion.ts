@@ -53,6 +53,7 @@ export interface NotionPost {
     Category: SelectPropertyItemObjectResponse;
     Excerpt: ActualRichTextProperty;
     Status?: SelectPropertyItemObjectResponse;
+    Slug: ActualRichTextProperty;
   };
 }
 

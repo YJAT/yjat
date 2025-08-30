@@ -67,3 +67,28 @@ export async function getPostById(pageId: string) {
     return null;
   }
 }
+
+// 使用 slug 查詢特定文章
+export async function getPostBySlug(slug: string) {
+  try {
+    const response = await notion.databases.query({
+      database_id: databaseId as string,
+      filter: {
+        property: 'Slug',
+        rich_text: {
+          equals: slug,
+        },
+      },
+    });
+
+    if (response.results.length === 0) {
+      return null;
+    }
+
+    const pageId = response.results[0].id;
+    return getPostById(pageId);
+  } catch (error) {
+    console.error(`Error fetching post with slug ${slug}:`, error);
+    return null;
+  }
+}
