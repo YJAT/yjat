@@ -1,4 +1,4 @@
-import { getPostById, getPostBySlug , getPosts } from '@/lib/notion';
+import { getPostById, getPostBySlug, getPosts } from '@/lib/notion';
 import { format } from 'date-fns';
 import { zhTW } from 'date-fns/locale';
 import NotionPage from '@/components/notion/NotionPage';
@@ -14,8 +14,8 @@ const getPostSlugWithCache = cache(async (id: string) => {
   return await getPostBySlug(id);
 });
 
-async function getPostHandler(id: string){
-  if(id.startsWith('content_')){
+async function getPostHandler(id: string) {
+  if (id.startsWith('content_')) {
     const postId = id.split('content_')[1];
     return await getPostWithCache(postId);
   } else {
@@ -40,19 +40,19 @@ export async function generateMetadata({
   params: Promise<{ id: string }>;
 }): Promise<Metadata> {
   const { id } = await params;
-  
+
   const postData = await getPostHandler(id);
 
-  if(postData){
+  if (postData) {
     const { page } = postData;
     const notionPage = page as any;
 
     const title = notionPage.properties.Title.title.map((text: any) => text.plain_text).join('');
     const description = notionPage.properties.Excerpt?.rich_text
-    ? notionPage.properties.Excerpt.rich_text.map((text: any) => text.plain_text).join('')
-    : '無摘要';
+      ? notionPage.properties.Excerpt.rich_text.map((text: any) => text.plain_text).join('')
+      : '無摘要';
     const author = notionPage.properties.Author?.rich_text[0]?.plain_text || '臺灣青年法律人協會';
-    
+
     return {
       title: `${title} | 臺灣青年法律人協會`,
       description,
@@ -62,12 +62,13 @@ export async function generateMetadata({
         description,
         type: 'article',
         publishedTime: notionPage.properties.Published?.date?.start || undefined,
-        images: notionPage.cover?.external?.url || notionPage.cover?.file?.url || '/images/logo.jpg',
+        images:
+          notionPage.cover?.external?.url || notionPage.cover?.file?.url || '/images/logo.jpg',
       },
     };
-  }else{
+  } else {
     return {
-      title: '找不到文章 | 臺灣青年法律人協會'
+      title: '找不到文章 | 臺灣青年法律人協會',
     };
   }
 }

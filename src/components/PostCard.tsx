@@ -25,8 +25,6 @@ export default function PostCard({ post, showTag = false }: PostCardProps) {
 
   const postSlug = post.properties?.Slug.rich_text[0]?.plain_text;
 
-
-
   return (
     <div className='relative bg-white shadow-md dark:bg-zinc-700'>
       {showTag && (
@@ -50,13 +48,16 @@ export default function PostCard({ post, showTag = false }: PostCardProps) {
           <p className='mb-2 text-sm text-gray-500 dark:text-white'>{publishedDate}</p>
         </div>
         <h3 className='relative mb-2 line-clamp-1 text-xl font-semibold text-gray-800 dark:text-white'>
-          <Link href={`/posts/${ postSlug || 'content_' + post.id}`} className='hover:underline'>
+          <Link href={`/posts/${postSlug || 'content_' + post.id}`} className='hover:underline'>
             {title}
           </Link>
         </h3>
         <p className='line-clamp-3 h-18 text-gray-600 dark:text-white'>{excerpt}</p>
         <div className='mt-4'>
-          <Link href={`/posts/${ postSlug || 'content_' + post.id}`} className='font-bold hover:underline'>
+          <Link
+            href={`/posts/${postSlug || 'content_' + post.id}`}
+            className='font-bold hover:underline'
+          >
             閱讀更多 →
           </Link>
         </div>

@@ -76,15 +76,15 @@ export async function getPostBySlug(slug: string) {
       filter: {
         property: 'Slug',
         rich_text: {
-          equals: slug
-        }
-      }
+          equals: slug,
+        },
+      },
     });
-    
+
     if (response.results.length === 0) {
       return null;
     }
-    
+
     const pageId = response.results[0].id;
     return getPostById(pageId);
   } catch (error) {
