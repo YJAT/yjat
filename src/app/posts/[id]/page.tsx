@@ -30,7 +30,7 @@ export async function generateStaticParams() {
   const posts = await getPosts();
 
   return posts.map((post) => ({
-    id: post.properties.Slug.rich_text[0]?.plain_text || 'content_' + post.id
+    id: post.properties.Slug.rich_text[0]?.plain_text || 'content_' + post.id,
   }));
 }
 
