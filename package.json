@@ -11,7 +11,8 @@
     "lint": "next lint",
     "postinstall": "flowbite-react patch",
     "pretty": "prettier --write \"./**/*.{js,jsx,ts,tsx,json,css}\"",
-    "pretty:check": "prettier --check \"./**/*.{js,jsx,ts,tsx,json,css}\""
+    "pretty:check": "prettier --check \"./**/*.{js,jsx,ts,tsx,json,css}\"",
+    "test": "jest"
   },
   "dependencies": {
     "@next/third-parties": "^15.3.2",
@@ -30,14 +31,22 @@
   "devDependencies": {
     "@next/eslint-plugin-next": "^15.5.0",
     "@tailwindcss/postcss": "^4",
+    "@testing-library/dom": "^10.4.1",
+    "@testing-library/jest-dom": "^6.8.0",
+    "@testing-library/react": "^16.3.0",
+    "@types/jest": "^30.0.0",
     "@types/node": "^24",
     "@types/react": "^19.1.1",
     "@types/react-dom": "^19.1.1",
     "eslint": "^9",
     "eslint-config-next": "15.3.1",
+    "jest": "^30.1.1",
+    "jest-environment-jsdom": "^30.1.1",
     "prettier": "^3.6.2",
     "prettier-plugin-tailwindcss": "^0.6.14",
     "tailwindcss": "^4",
+    "ts-jest": "^29.4.1",
+    "ts-node": "^10.9.2",
     "typescript": "^5"
   }
 }
