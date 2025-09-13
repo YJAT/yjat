@@ -33,14 +33,7 @@ export default function PostCard({ post, showTag = false }: PostCardProps) {
         </div>
       )}
       <div className='hidden h-48 overflow-hidden md:block'>
-        <Image
-          width={500}
-          height={500}
-          src={coverImage}
-          alt={title}
-          className='h-full w-full object-cover'
-          priority
-        />
+        <img src={coverImage} alt={title} className='h-full w-full object-cover' />
       </div>
       <div className='px-4 py-6'>
         <div className='hidden items-center justify-between md:flex'>

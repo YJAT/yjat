@@ -23,7 +23,7 @@ async function getPostHandler(id: string) {
   }
 }
 
-export const revalidate = 3600; // 每小時重新生成頁面
+export const revalidate = 3000;
 
 // 生成靜態路徑
 export async function generateStaticParams() {
@@ -113,18 +113,7 @@ export default async function PostPage({ params }: { params: Promise<{ id: strin
           <div className='mt-2 text-sm text-gray-600 dark:text-gray-200'>作者：{author}</div>
         </div>
 
-        {coverImage && (
-          <div className='mb-8'>
-            <Image
-              width={1000}
-              height={1000}
-              src={coverImage}
-              alt={title}
-              className='h-auto w-full rounded-lg shadow-md'
-            />
-          </div>
-        )}
-
+        {coverImage && <img src={coverImage} alt={title} className='h-auto w-full rounded-lg shadow-md' /> }
         <NotionPage recordMap={recordMap} />
       </article>
     </div>
