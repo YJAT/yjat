@@ -2,28 +2,18 @@ import { getPostById, getPostBySlug, getPosts } from '@/lib/notion';
 import { format } from 'date-fns';
 import { zhTW } from 'date-fns/locale';
 import NotionPage from '@/components/notion/NotionPage';
-import Image from 'next/image';
-import { cache } from 'react';
 import { Metadata } from 'next';
-
-const getPostWithCache = cache(async (id: string) => {
-  return await getPostById(id);
-});
-
-const getPostSlugWithCache = cache(async (id: string) => {
-  return await getPostBySlug(id);
-});
 
 async function getPostHandler(id: string) {
   if (id.startsWith('content_')) {
     const postId = id.split('content_')[1];
-    return await getPostWithCache(postId);
+    return await getPostById(postId);
   } else {
-    return await getPostSlugWithCache(id);
+    return await getPostBySlug(id);
   }
 }
 
-export const revalidate = 3600; // 每小時重新生成頁面
+export const revalidate = 3000;
 
 // 生成靜態路徑
 export async function generateStaticParams() {
@@ -114,17 +104,8 @@ export default async function PostPage({ params }: { params: Promise<{ id: strin
         </div>
 
         {coverImage && (
-          <div className='mb-8'>
-            <Image
-              width={1000}
-              height={1000}
-              src={coverImage}
-              alt={title}
-              className='h-auto w-full rounded-lg shadow-md'
-            />
-          </div>
+          <img src={coverImage} alt={title} className='h-auto w-full rounded-lg shadow-md' />
         )}
-
         <NotionPage recordMap={recordMap} />
       </article>
     </div>
