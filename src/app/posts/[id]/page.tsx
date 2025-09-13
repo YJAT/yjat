@@ -113,7 +113,9 @@ export default async function PostPage({ params }: { params: Promise<{ id: strin
           <div className='mt-2 text-sm text-gray-600 dark:text-gray-200'>作者：{author}</div>
         </div>
 
-        {coverImage && <img src={coverImage} alt={title} className='h-auto w-full rounded-lg shadow-md' /> }
+        {coverImage && (
+          <img src={coverImage} alt={title} className='h-auto w-full rounded-lg shadow-md' />
+        )}
         <NotionPage recordMap={recordMap} />
       </article>
     </div>
