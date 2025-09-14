@@ -63,7 +63,7 @@ export async function generateMetadata({
         type: 'article',
         publishedTime: notionPage.properties.Published?.date?.start || undefined,
         images:
-          notionPage.cover?.external?.url || notionPage.cover?.file?.url || '/images/logo.jpg',
+          notionPage.cover?.external?.url || `/images/${notionPage.properties?.Slug.rich_text[0]?.plain_text}.webp` || '/images/logo.jpg',
       },
     };
   } else {
