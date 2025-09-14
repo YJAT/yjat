@@ -118,7 +118,7 @@ export default async function PostPage({ params }: { params: Promise<{ id: strin
             <Image
               width={1000}
               height={1000}
-              src={coverImage}
+              src={`/images/${notionPage.properties?.Slug.rich_text[0]?.plain_text}.webp`}
               alt={title}
               className='h-auto w-full rounded-lg shadow-md'
             />
