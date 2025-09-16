@@ -108,15 +108,19 @@ export default async function PostPage({ params }: { params: Promise<{ id: strin
   const jsonLd: WithContext<NewsArticle> = {
     '@context': 'https://schema.org',
     '@type': 'NewsArticle',
-    'headline': title,
-    'image': [
-      coverImage ? `/images/${notionPage.properties?.Slug.rich_text[0]?.plain_text}.webp` : '/images/logo.jpg'
+    headline: title,
+    image: [
+      coverImage
+        ? `/images/${notionPage.properties?.Slug.rich_text[0]?.plain_text}.webp`
+        : '/images/logo.jpg',
     ],
-    'datePublished': notionPage.properties.Published?.date?.start,
-    'author': [{
+    datePublished: notionPage.properties.Published?.date?.start,
+    author: [
+      {
         '@type': 'Person',
-        'name': author,
-      }]
+        name: author,
+      },
+    ],
   };
 
   return (
@@ -145,9 +149,9 @@ export default async function PostPage({ params }: { params: Promise<{ id: strin
         <NotionPage recordMap={recordMap} />
       </article>
       <script
-          type='application/ld+json'
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
+        type='application/ld+json'
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
     </div>
   );
 }
