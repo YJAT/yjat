@@ -55,7 +55,7 @@ export default async function Home() {
   );
 }
 
-async function HomepageSections({
+export async function HomepageSections({
   sectionTitle,
   category,
   link,
