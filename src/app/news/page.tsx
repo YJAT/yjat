@@ -1,5 +1,20 @@
 import Link from 'next/link';
+import { Metadata } from 'next';
 import { HomepageSections } from '../page';
+
+export const metadata: Metadata = {
+  title: '最新消息｜臺灣青年法律人協會',
+  description: '「臺灣青年法律人協會」將繼續關注考選改革相關動態，並以青年法律人視角參與公共事務，希望能打造一個青年法律人公共參與平台及發聲管道，持續爭取青年世代權益。',
+  openGraph: {
+    title: '最新消息｜臺灣青年法律人協會',
+    description: '「臺灣青年法律人協會」將繼續關注考選改革相關動態，並以青年法律人視角參與公共事務，希望能打造一個青年法律人公共參與平台及發聲管道，持續爭取青年世代權益。',
+    images: [
+      {
+        url: '/images/cover.png',
+      },
+    ],
+  },
+};
 
 export default function News() {
   return (
