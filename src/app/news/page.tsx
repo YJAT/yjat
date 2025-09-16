@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { Metadata } from 'next';
-import { HomepageSections } from '../page';
+import HomepageSections from '@/components/homepageSections';
 
 export const metadata: Metadata = {
   title: '最新消息｜臺灣青年法律人協會',
