@@ -5,6 +5,7 @@ import NotionPage from '@/components/notion/NotionPage';
 import Image from 'next/image';
 import { cache } from 'react';
 import { Metadata } from 'next';
+import { NewsArticle, WebSite, WithContext } from 'schema-dts';
 
 const getPostWithCache = cache(async (id: string) => {
   return await getPostById(id);
@@ -104,6 +105,20 @@ export default async function PostPage({ params }: { params: Promise<{ id: strin
 
   const author = notionPage.properties.Author?.rich_text[0]?.plain_text || '不具名';
 
+  const jsonLd: WithContext<NewsArticle> = {
+    '@context': 'https://schema.org',
+    '@type': 'NewsArticle',
+    'headline': title,
+    'image': [
+      coverImage ? `/images/${notionPage.properties?.Slug.rich_text[0]?.plain_text}.webp` : '/images/logo.jpg'
+    ],
+    'datePublished': notionPage.properties.Published?.date?.start,
+    'author': [{
+        '@type': 'Person',
+        'name': author,
+      }]
+  };
+
   return (
     <div className='container mx-auto px-4 py-8'>
       <article className='mx-auto max-w-2xl'>
@@ -129,6 +144,10 @@ export default async function PostPage({ params }: { params: Promise<{ id: strin
 
         <NotionPage recordMap={recordMap} />
       </article>
+      <script
+          type='application/ld+json'
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
     </div>
   );
 }
