@@ -3,10 +3,12 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: '研究生日常｜臺灣青年法律人協會',
-  description: '扎根法界，深化參與，守護臺灣',
+  description:
+    '「臺灣青年法律人協會」將繼續關注考選改革相關動態，並以青年法律人視角參與公共事務，希望能打造一個青年法律人公共參與平台及發聲管道，持續爭取青年世代權益。',
   openGraph: {
     title: '研究生日常｜臺灣青年法律人協會',
-    description: '扎根法界，深化參與，守護臺灣',
+    description:
+      '「臺灣青年法律人協會」將繼續關注考選改革相關動態，並以青年法律人視角參與公共事務，希望能打造一個青年法律人公共參與平台及發聲管道，持續爭取青年世代權益。',
     images: [
       {
         url: '/images/cover.png',
