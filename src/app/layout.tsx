@@ -39,6 +39,7 @@ const jsonLdOrg: WithContext<Organization> = {
   '@type': 'NGO',
   telephone: '+886-920-103-608',
   logo: 'https://bera2017.org/images/logo.jpg',
+  image: 'https://bera2017.org/images/logo.jpg',
   name: '臺灣青年法律人協會',
   legalName: '社團法人臺灣青年法律人協會',
   alternateName: '青法協',
