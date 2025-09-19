@@ -47,9 +47,9 @@ const jsonLdOrg: WithContext<Organization> = {
     '臺灣青年法律人協會（青法協），前「律師考試改革陣線」，2017年由一群大專校院法律系學生共同發起，反對當年考試院及考選部聯手推動的律師考試規則修惡，強行增加四百分門檻，造成許多考生反覆落榜的不良後果。2020年11月正式立案為「律師考試改革協會」。而為了持續扎根法界、深化公共參與並守護臺灣民主，號召更多青年律師及法律人改組為「臺灣青年法律人協會」。我們將繼續關注考選改革相關動態，並以青年法律人視角參與公共事務，希望能打造一個青年法律人公共參與平台及發聲管道，持續爭取青年世代權益。',
   url: 'https://bera2017.org',
   sameAs: [
-    'https://www.facebook.com/YJAT2017/?locale=zh_TW',
-    'https://www.instagram.com/yjat_since2017/',
-    'https://www.threads.com/@yjat_since2017?hl=zh-tw',
+    'https://www.facebook.com/YJAT2017',
+    'https://www.instagram.com/yjat_since2017',
+    'https://www.threads.com/@yjat_since2017',
   ],
 };
 
