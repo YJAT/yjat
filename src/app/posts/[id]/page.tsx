@@ -106,7 +106,9 @@ export default async function PostPage({ params }: { params: Promise<{ id: strin
 
   const author = notionPage.properties.Author?.rich_text[0]?.plain_text || '不具名';
 
-  const excerpt = notionPage.properties.Excerpt?.rich_text
+  const articleSection  = notionPage.properties.Category.select?.name || '無分類';
+
+  const description = notionPage.properties.Excerpt?.rich_text
   ? notionPage.properties.Excerpt.rich_text.map((text: any) => text.plain_text).join('')
   : '無摘要';
 
@@ -114,7 +116,8 @@ export default async function PostPage({ params }: { params: Promise<{ id: strin
     '@context': 'https://schema.org',
     '@type': 'NewsArticle',
     headline: title,
-    description: excerpt,
+    description,
+    articleSection,
     image: [
       coverImage
         ? `/images/${notionPage.properties?.Slug.rich_text[0]?.plain_text}.webp`
