@@ -5,7 +5,8 @@ import NotionPage from '@/components/notion/NotionPage';
 import Image from 'next/image';
 import { cache } from 'react';
 import { Metadata } from 'next';
-import { NewsArticle, WebSite, WithContext } from 'schema-dts';
+import { NewsArticle, WithContext } from 'schema-dts';
+import { NotionPost } from '@/types/notion';
 
 const getPostWithCache = cache(async (id: string) => {
   return await getPostById(id);
@@ -46,7 +47,7 @@ export async function generateMetadata({
 
   if (postData) {
     const { page } = postData;
-    const notionPage = page as any;
+    const notionPage: NotionPost = page as any;
 
     const title = notionPage.properties.Title.title.map((text: any) => text.plain_text).join('');
     const description = notionPage.properties.Excerpt?.rich_text
@@ -91,7 +92,7 @@ export default async function PostPage({ params }: { params: Promise<{ id: strin
 
   const { page, recordMap } = postData;
 
-  const notionPage = page as any;
+  const notionPage: NotionPost = page as any;
 
   const title = notionPage.properties.Title.title.map((text: any) => text.plain_text).join('');
 
@@ -105,10 +106,18 @@ export default async function PostPage({ params }: { params: Promise<{ id: strin
 
   const author = notionPage.properties.Author?.rich_text[0]?.plain_text || '不具名';
 
+  const articleSection = notionPage.properties.Category.select?.name || '無分類';
+
+  const description = notionPage.properties.Excerpt?.rich_text
+    ? notionPage.properties.Excerpt.rich_text.map((text: any) => text.plain_text).join('')
+    : '無摘要';
+
   const jsonLd: WithContext<NewsArticle> = {
     '@context': 'https://schema.org',
     '@type': 'NewsArticle',
     headline: title,
+    description,
+    articleSection,
     image: [
       coverImage
         ? `/images/${notionPage.properties?.Slug.rich_text[0]?.plain_text}.webp`
