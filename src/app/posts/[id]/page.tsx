@@ -7,6 +7,7 @@ import { cache } from 'react';
 import { Metadata } from 'next';
 import { NewsArticle, WithContext } from 'schema-dts';
 import { NotionPost } from '@/types/notion';
+import { ExtendedRecordMap } from 'notion-types';
 
 const getPostWithCache = cache(async (id: string) => {
   return await getPostById(id);
@@ -132,9 +133,9 @@ export default async function PostPage({ params }: { params: Promise<{ id: strin
     ],
   };
 
-  function extractTextFromRecordMap(recordMap) {
+  function extractTextFromRecordMap(recordMap: ExtendedRecordMap) {
     const blocks = recordMap?.block || {};
-    const textContent = [];
+    const textContent: string[] = [];
 
     Object.values(blocks).forEach((block) => {
       const blockValue = block?.value;
