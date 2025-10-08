@@ -7,6 +7,7 @@ import { cache } from 'react';
 import { Metadata } from 'next';
 import { NewsArticle, WithContext } from 'schema-dts';
 import { NotionPost } from '@/types/notion';
+import { ExtendedRecordMap } from 'notion-types';
 
 const getPostWithCache = cache(async (id: string) => {
   return await getPostById(id);
@@ -132,6 +133,39 @@ export default async function PostPage({ params }: { params: Promise<{ id: strin
     ],
   };
 
+  function extractTextFromRecordMap(recordMap: ExtendedRecordMap) {
+    const blocks = recordMap?.block || {};
+    const textContent: string[] = [];
+
+    Object.values(blocks).forEach((block) => {
+      const blockValue = block?.value;
+
+      if (!blockValue) return;
+
+      // 提取 properties.title 中的文字
+      const title = blockValue.properties?.title;
+      if (title && Array.isArray(title)) {
+        // title 的結構通常是 [["文字內容", [["格式資訊"]]]]
+        const text = title
+          .map((item) => {
+            if (Array.isArray(item)) {
+              return item[0]; // 取第一個元素(純文字)
+            }
+            return item;
+          })
+          .join('');
+
+        if (text.trim()) {
+          textContent.push(text.trim());
+        }
+      }
+    });
+
+    return textContent;
+  }
+
+  const plainText = extractTextFromRecordMap(recordMap);
+
   return (
     <div className='container mx-auto px-4 py-8'>
       <article className='mx-auto max-w-2xl'>
@@ -154,6 +188,14 @@ export default async function PostPage({ params }: { params: Promise<{ id: strin
             />
           </div>
         )}
+
+        <noscript>
+          <div className='prose'>
+            {plainText.map((paragraph, i) => (
+              <p key={i}>{paragraph}</p>
+            ))}
+          </div>
+        </noscript>
 
         <NotionPage recordMap={recordMap} />
       </article>
