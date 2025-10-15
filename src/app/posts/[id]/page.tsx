@@ -8,6 +8,7 @@ import { Metadata } from 'next';
 import { NewsArticle, WithContext } from 'schema-dts';
 import { NotionPost } from '@/types/notion';
 import { ExtendedRecordMap } from 'notion-types';
+import convertToISO from '@/lib/convertToISO';
 
 const getPostWithCache = cache(async (id: string) => {
   return await getPostById(id);
@@ -173,8 +174,17 @@ export default async function PostPage({ params }: { params: Promise<{ id: strin
           <h1 className='mb-4 border-l-4 border-l-emerald-500 px-4 text-3xl font-bold text-gray-900 md:text-4xl dark:text-white'>
             {title}
           </h1>
-          <div className='text-sm text-gray-600 dark:text-gray-200'>發布於 {publishedDate}</div>
-          <div className='mt-2 text-sm text-gray-600 dark:text-gray-200'>作者：{author}</div>
+          <p className='text-sm text-gray-600 dark:text-gray-200'>
+            發布於
+            <time dateTime={convertToISO(publishedDate)}>{publishedDate}</time>
+          </p>
+
+          <p className='mt-2 text-sm text-gray-600 dark:text-gray-200'>
+            作者：
+            <span itemProp='author' itemScope itemType='https://schema.org/Person'>
+              {author}
+            </span>
+          </p>
         </div>
 
         {coverImage && (
