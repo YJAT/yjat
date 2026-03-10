@@ -122,16 +122,25 @@ export default async function PostPage({ params }: { params: Promise<{ id: strin
     articleSection,
     image: [
       coverImage
-        ? `/images/${notionPage.properties?.Slug.rich_text[0]?.plain_text}.webp`
-        : '/images/logo.jpg',
+        ? `https://bera2017.org/images/${notionPage.properties?.Slug.rich_text[0]?.plain_text}.webp`
+        : 'https://bera2017.org/images/logo.jpg',
     ],
     datePublished: notionPage.properties.Published?.date?.start,
+    dateModified: notionPage.properties.Published?.date?.start,
     author: [
       {
         '@type': 'Person',
         name: author,
       },
     ],
+    publisher: {
+      '@type': 'Organization',
+      name: '臺灣青年法律人協會',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://bera2017.org/images/logo.jpg',
+      },
+    },
   };
 
   function extractTextFromRecordMap(recordMap: ExtendedRecordMap) {
