@@ -120,6 +120,9 @@ export default async function PostPage({ params }: { params: Promise<{ id: strin
     headline: title,
     description,
     articleSection,
+    // Notion 封面圖使用 presigned URL，有時效限制，故改用本地快取的靜態 WebP。
+    // coverImage 在此僅作為布林旗標：有封面 → 使用 slug 對應的 /public/images/*.webp；
+    // 無封面 → 使用預設 logo。實際圖片需在發布文章時一併存入 public/images/。
     image: [
       coverImage
         ? `https://bera2017.org/images/${notionPage.properties?.Slug.rich_text[0]?.plain_text}.webp`
