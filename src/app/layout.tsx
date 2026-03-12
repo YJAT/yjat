@@ -19,6 +19,8 @@ export const metadata: Metadata = {
     images: [
       {
         url: '/images/cover.png',
+        width: 1200,
+        height: 630,
       },
     ],
   },
@@ -28,7 +30,10 @@ const jsonLd: WithContext<WebSite> = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
   url: 'https://bera2017.org',
-  author: '臺灣青年法律人協會',
+  author: {
+    '@type': 'Organization',
+    name: '臺灣青年法律人協會',
+  },
   abstract: '扎根法界，深化參與，守護臺灣',
   description:
     '臺灣青年法律人協會（青法協），前身為律師考試改革協會，青法協將繼續關注考選改革相關動態，並以青年法律人視角參與公共事務，希望能打造一個青年法律人公共參與平台及發聲管道，持續爭取青年世代權益。',

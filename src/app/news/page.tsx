@@ -4,12 +4,10 @@ import HomepageSections from '@/components/homepageSections';
 
 export const metadata: Metadata = {
   title: '最新消息｜臺灣青年法律人協會',
-  description:
-    '「臺灣青年法律人協會」將繼續關注考選改革相關動態，並以青年法律人視角參與公共事務，希望能打造一個青年法律人公共參與平台及發聲管道，持續爭取青年世代權益。',
+  description: '臺灣青年法律人協會最新消息，包含活動公告、聲明稿及協會近況報導。',
   openGraph: {
     title: '最新消息｜臺灣青年法律人協會',
-    description:
-      '「臺灣青年法律人協會」將繼續關注考選改革相關動態，並以青年法律人視角參與公共事務，希望能打造一個青年法律人公共參與平台及發聲管道，持續爭取青年世代權益。',
+    description: '臺灣青年法律人協會最新消息，包含活動公告、聲明稿及協會近況報導。',
     images: [
       {
         url: '/images/cover.png',
